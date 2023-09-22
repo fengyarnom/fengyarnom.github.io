@@ -26,6 +26,7 @@ pub struct Post{
 
 #[derive( Deserialize,Serialize,Clone, Debug)]
 pub struct Page{
+    pub published: bool,
     pub title: String,
     pub date: String,
     pub template: String,
