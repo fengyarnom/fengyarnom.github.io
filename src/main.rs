@@ -25,7 +25,7 @@ async fn main() {
             init();
         },
         "generate" => {
-            generate::generate_site();
+            generate()
         },
         "server" => {
             if let Err(e) = server().await {
@@ -40,6 +40,7 @@ async fn main() {
 
 async fn server() -> std::io::Result<()> {
     println!("Starting server...");
+    generate();
     println!("Running server!");
 
     // 服务启动，默认在本地 127.0.0.1:8080 运行
@@ -58,4 +59,5 @@ fn init() {
 
 fn generate() {
     println!("Generating...");
+    generate::generate_site();
 }
