@@ -1,3 +1,4 @@
 /target
 /.idea
-/sources
+sources/
+public/
