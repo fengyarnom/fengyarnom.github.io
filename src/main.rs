@@ -1,8 +1,10 @@
 mod generate;
 
 use std::{env, fs, process};
+use std::path::Path;
 use actix_web::{App, HttpServer, Responder};
 use actix_files::Files;
+use notify::{ Watcher, RecursiveMode};
 
 #[actix_web::main]
 async fn main() {
@@ -25,7 +27,7 @@ async fn main() {
             init();
         },
         "generate" => {
-            generate::generate_site();
+            generate()
         },
         "server" => {
             if let Err(e) = server().await {
@@ -40,7 +42,20 @@ async fn main() {
 
 async fn server() -> std::io::Result<()> {
     println!("Starting server...");
+    generate();
     println!("Running server!");
+
+    let mut watcher = notify::recommended_watcher(|res| {
+        match res {
+            Ok(event) => {
+                generate();
+                println!("Restarted server!");
+            },
+            Err(e) => println!("watch error: {:?}", e),
+        }
+    }).unwrap();
+    watcher.watch(Path::new("./sources"), RecursiveMode::Recursive).unwrap();
+
 
     // 服务启动，默认在本地 127.0.0.1:8080 运行
     HttpServer::new(|| {
@@ -58,4 +73,5 @@ fn init() {
 
 fn generate() {
     println!("Generating...");
+    generate::generate_site();
 }
