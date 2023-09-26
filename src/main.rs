@@ -41,7 +41,7 @@ async fn main() {
 }
 
 async fn server() -> std::io::Result<()> {
-    println!("Starting server...")
+    println!("Starting server...");
     generate();
     println!("Running server!");
 

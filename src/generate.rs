@@ -345,6 +345,25 @@ pub fn generate_site(){
         }
     }
 
+    // static
+    let scss_input_dir = "./sources/static/css";
+    let css_output_dir = "./public/static/css";
+    fs::create_dir_all(css_output_dir).unwrap();
+    for entry in fs::read_dir(&scss_input_dir).unwrap() {
+        if let Ok(entry) = entry{
+            let file_name = entry.file_name().into_string().unwrap();
+            if file_name.ends_with(".scss") {
+                let css_content =
+                    grass::from_path(entry.path(),&grass::Options::default()).unwrap();
+                fs::write(format!("{}/{}.css",css_output_dir,entry.path().file_stem().unwrap().to_string_lossy()), css_content).unwrap();
+
+            } else if file_name.ends_with(".css") {
+                fs::copy(format!("{}/{}",scss_input_dir,file_name), format!("{}/{}",css_output_dir,file_name)).unwrap();
+            }
+        }
+
+    }
+
 
 }
 
