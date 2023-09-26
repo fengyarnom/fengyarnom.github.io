@@ -25,7 +25,7 @@ async fn main() {
             init();
         },
         "generate" => {
-            generate();
+            generate::generate_site();
         },
         "server" => {
             if let Err(e) = server().await {
