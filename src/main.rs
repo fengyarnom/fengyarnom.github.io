@@ -1,9 +1,12 @@
 mod generate;
 
 use std::{env, fs, process};
+use std::fs::File;
+use std::io::Write;
 use std::path::Path;
 use actix_web::{App, HttpServer, Responder};
 use actix_files::Files;
+use chrono::Utc;
 use notify::{ Watcher, RecursiveMode};
 
 #[actix_web::main]
@@ -15,9 +18,9 @@ async fn main() {
     if args.len() < 2 {
         println!("Usage: cargo run <command>");
         println!("init\t -- Initialize a new blog");
+        println!("new\t -- create a new post");
         println!("generate\t-- generate all static files");
         println!("server\t-- Start a local server to preview the blog");
-        println!("clean\t-- Clean up generated files");
         return;
     }
 
@@ -26,6 +29,9 @@ async fn main() {
         "init" =>{
             init();
         },
+        "new" => {
+            new(args);
+        }
         "generate" => {
             generate()
         },
@@ -74,4 +80,23 @@ fn init() {
 fn generate() {
     println!("Generating...");
     generate::generate_site();
+}
+
+fn new(args: Vec<String>){
+    if args.len() < 3 {
+        println!("Usage: new 'post title'");
+        return;
+    }
+
+    let local_time = Utc::now().naive_utc();
+    let post_title = args[2].as_str();
+    let file_name = format!("./sources/content/posts/{}-{}.md", local_time.format("%Y-%m-%d"),post_title.to_lowercase().replace(" ", "-"));
+
+    let file_content = format!(
+        "---\ntitle: {}\ndate: {}\ntags:\ncategories:\n---",
+        post_title,local_time.format("%Y-%m-%d %H:%M:%S"));
+
+        let mut file = File::create(&file_name).unwrap();
+        file.write_all(file_content.as_bytes()).unwrap();
+        println!("New post created: {}", &file_name);
 }
