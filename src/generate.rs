@@ -2,14 +2,24 @@ use std::collections::hash_map::Entry;
 use std::collections::HashMap;
 use std::fmt::format;
 use std::fs;
+use std::io::Read;
 use std::path::PathBuf;
 use serde::{Serialize, Deserialize};
 use chrono::{Datelike, NaiveDateTime, ParseError};
 use comrak::{ComrakOptions, markdown_to_html};
 use gray_matter::Matter;
-use gray_matter::engine::YAML;
+use gray_matter::engine::{YAML};
 use tera::{Context, Tera};
+extern crate toml;
 
+#[derive( Deserialize,Serialize,Clone, Debug)]
+pub struct Site {
+    pub title: String
+}
+#[derive( Deserialize,Serialize,Clone, Debug)]
+struct Config {
+    site: Site,
+}
 #[derive(Deserialize,Clone, Debug)]
 pub struct PostFrontMatter {
     pub title: String,
@@ -119,6 +129,15 @@ pub struct Archive {
 }
 
 pub fn generate_site(){
+
+    // read config
+    let mut file = fs::File::open("./sources/config.toml").expect("无法打开文件");
+    let mut contents = String::new();
+    file.read_to_string(&mut contents).expect("无法读取文件内容");
+
+    // 获取表中的数据
+    let config: Config = toml::from_str(&contents).expect("解析 TOML 配置文件失败");
+
     let content_path = PathBuf::from("./sources/content");
 
     let mut archive_global = Archive{
@@ -195,10 +214,11 @@ pub fn generate_site(){
     }
 
     let mut tera = Tera::new("./sources/templates/**/*.html").unwrap();
-
+    let mut context = Context::new();
+    context.insert("global",&archive_global.clone());
+    context.insert("config",&config);
     // archive post page
     for post in &archive_global.posts{
-        let mut context = Context::new();
 
         let mut page = Page{
             published: post.published,
@@ -228,7 +248,6 @@ pub fn generate_site(){
     }
     // archive tag page
     for tag in &archive_global.tags{
-        let mut context = Context::new();
         let mut page = Page{
             published: true,
             title: tag.0.to_string(),
@@ -255,7 +274,6 @@ pub fn generate_site(){
 
     // archive category page
     for category in &archive_global.categories{
-        let mut context = Context::new();
         let mut page = Page{
             published: true,
             title: category.0.to_string(),
@@ -285,8 +303,6 @@ pub fn generate_site(){
     for entry in fs::read_dir("./sources/content/pages").unwrap(){
         if let Ok(entry) = entry{
             if entry.path().is_file(){
-                let mut context = Context::new();
-
                 let markdown = fs::read_to_string(entry.path()).unwrap();
                 let mut page = parse_page_markdown_file(&markdown);
                 let mut output= String::new();
@@ -334,7 +350,8 @@ pub fn generate_site(){
 
 
                     context.insert("page",&page);
-                    context.insert("global",&archive_global.clone());
+
+
                     let rendered = tera.render(&format!("{}.html",page.template), &context).unwrap();
                     fs::write(output, rendered).unwrap();
 
