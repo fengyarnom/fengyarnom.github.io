@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div class="tags-area">
+  <div class="header"><span >标签</span></div>
+  
+    <div class="tags">
+      {% for tag_name,tag in global.tags %}
+      <div class="tag">
+        <a href="{{tag.link}}" class="terms_link">{{ tag_name }}</a>
+      <span class="terms_count">{{tag.posts|length}}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+  
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{page.title}} {{page.date}}{% endblock %}
+{% block main_content %}
+
+<div class="post_area">
+    <div class="post">
+        <div class="header_post">
+            <div class="title_post"><a href="">{{page.title}}</a></div>
+            <div class="detail_post">
+                <div class="date">发布时间：{{page.date}}</div>
+                <div class="categories">
+                    归档分类：
+                    <ul>
+                        {% for category_name in page.posts[0].categories %}
+                        <li><a href="/categories/{{category_name}}">{{category_name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="tags_post">
+                    标签：
+                    <ul>
+                        {% for tag_name in page.posts[0].tags %}
+                        <li><a href="/tags/{{tag_name}}">{{tag_name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content_post">{{page.content|safe}}</div>
+    </div>
+</div>
+{% endblock %}
