@@ -1,6 +1,10 @@
 # rustic-pages
 A lightweight static blog generator developed using Rust
 
+## Document
+- [中文文档](README-CN.md)
+- [英文文档](README.md)
+
 ## Usage
 
 You can compile the source code of this project using the cargo build command.
