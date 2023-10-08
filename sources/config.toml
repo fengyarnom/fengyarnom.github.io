@@ -2,3 +2,8 @@
 [site]
 title="Yarnom'Blog"
 language="en"
+
+[menu]
+archive="/archive"
+tags="/archive/tags"
+categories="/archive/categories"

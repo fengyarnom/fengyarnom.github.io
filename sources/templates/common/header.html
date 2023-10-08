@@ -9,9 +9,9 @@
         
         <div class="nav_bar">
             <ul>
-                <li><a href="/archive">归档</a></li>
-                <li><a href="/archive/categories">分类</a></li>
-                <li><a href="/archive/tags">标签</a></li>
+                {% for name,link in menu %}
+                    <li><a href="{{link}}">{{name}}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>

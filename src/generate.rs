@@ -9,12 +9,15 @@ use comrak::{ComrakOptions, markdown_to_html};
 use gray_matter::Matter;
 use gray_matter::engine::{YAML};
 use tera::{Context, Tera};
+use toml::Value;
 extern crate toml;
 
 #[derive( Deserialize,Serialize,Clone, Debug)]
 pub struct Site {
     pub title: String
 }
+
+
 #[derive( Deserialize,Serialize,Clone, Debug)]
 struct Config {
     site: Site,
@@ -136,7 +139,11 @@ pub fn generate_site(){
 
     // 获取表中的数据
     let config: Config = toml::from_str(&contents).expect("解析 TOML 配置文件失败");
+    
+    let parsed_toml: Value = toml::from_str(&contents).expect("Failed to parse TOML");
+    let menu_section = parsed_toml.get("menu").expect("No 'menu' section found").as_table().expect("'menu' section is not a table");
 
+    println!("{:?}",menu_section);
     let content_path = PathBuf::from("./sources/content");
 
     let mut archive_global = Archive{
@@ -216,6 +223,7 @@ pub fn generate_site(){
     let mut context = Context::new();
     context.insert("global",&archive_global.clone());
     context.insert("config",&config);
+    context.insert("menu",&menu_section);
     // archive post page
     for post in &archive_global.posts{
 
