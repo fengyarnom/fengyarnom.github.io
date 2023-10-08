@@ -242,6 +242,7 @@ pub fn generate_site(){
         let rendered = tera.render("post.html", &context).unwrap();
         let folder = PathBuf::from(&post.source_link).parent().unwrap().to_string_lossy().to_string();
         fs::create_dir_all(folder).unwrap();
+        println!("{}",&post.source_link);
         fs::write(&post.source_link, rendered).unwrap();
 
     }
