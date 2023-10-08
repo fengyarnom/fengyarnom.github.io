@@ -1,6 +1,5 @@
 use std::collections::hash_map::Entry;
 use std::collections::HashMap;
-use std::fmt::format;
 use std::fs;
 use std::io::Read;
 use std::path::PathBuf;
@@ -179,7 +178,7 @@ pub fn generate_site(){
                     let tag = occupied.get_mut();
                     tag.posts.push(post.clone());
                 }
-                Entry::Vacant(mut vacant) => {
+                Entry::Vacant(vacant) => {
                     let new_tag = Tag {
                         name: tag.to_string(),
                         posts: vec![post.clone()],
@@ -200,7 +199,7 @@ pub fn generate_site(){
                     let category = occupied.get_mut();
                     category.posts.push(post.clone());
                 }
-                Entry::Vacant(mut vacant) => {
+                Entry::Vacant(vacant) => {
                     let new_category = Category {
                         name: category.to_string(),
                         posts: vec![post.clone()],
@@ -213,14 +212,14 @@ pub fn generate_site(){
         }
     }
 
-    let mut tera = Tera::new("./sources/templates/**/*.html").unwrap();
+    let tera = Tera::new("./sources/templates/**/*.html").unwrap();
     let mut context = Context::new();
     context.insert("global",&archive_global.clone());
     context.insert("config",&config);
     // archive post page
     for post in &archive_global.posts{
 
-        let mut page = Page{
+        let page = Page{
             published: post.published,
             title: post.title.to_string(),
             date: post.date_simp.to_string(),
@@ -242,13 +241,13 @@ pub fn generate_site(){
         context.insert("page",&page);
         let rendered = tera.render("post.html", &context).unwrap();
         let folder = PathBuf::from(&post.source_link).parent().unwrap().to_string_lossy().to_string();
-        fs::create_dir_all(folder);
+        fs::create_dir_all(folder).unwrap();
         fs::write(&post.source_link, rendered).unwrap();
 
     }
     // archive tag page
     for tag in &archive_global.tags{
-        let mut page = Page{
+        let page = Page{
             published: true,
             title: tag.0.to_string(),
             date: "".to_string(),
@@ -268,13 +267,13 @@ pub fn generate_site(){
         context.insert("page",&page);
         let rendered = tera.render("archive.html", &context).unwrap();
         let folder = PathBuf::from(&tag.1.source_link).parent().unwrap().to_string_lossy().to_string();
-        fs::create_dir_all(folder);
+        fs::create_dir_all(folder).unwrap();
         fs::write(&tag.1.source_link, rendered).unwrap();
     }
 
     // archive category page
     for category in &archive_global.categories{
-        let mut page = Page{
+        let page = Page{
             published: true,
             title: category.0.to_string(),
             date: "".to_string(),
@@ -295,7 +294,7 @@ pub fn generate_site(){
 
         let rendered = tera.render("archive.html", &context).unwrap();
         let folder = PathBuf::from(&category.1.source_link).parent().unwrap().to_string_lossy().to_string();
-        fs::create_dir_all(folder);
+        fs::create_dir_all(folder).unwrap();
         fs::write(&category.1.source_link, rendered).unwrap();
     }
 
@@ -305,7 +304,7 @@ pub fn generate_site(){
             if entry.path().is_file(){
                 let markdown = fs::read_to_string(entry.path()).unwrap();
                 let mut page = parse_page_markdown_file(&markdown);
-                let mut output= String::new();
+
 
                 let mut current = 1;
                 let total = archive_global.posts.len();
@@ -315,21 +314,22 @@ pub fn generate_site(){
                 }
 
                 while current <=  total / page.limited_cows + 1{
+                    let output;
                     page.current = current;
                     page.total = total;
                     let left = (current - 1) * page.limited_cows;
-                    let right= if (current * page.limited_cows) > total {total} else {((current * page.limited_cows))};
+                    let right= if (current * page.limited_cows) > total {total} else {current * page.limited_cows};
                     page.posts = archive_global.posts[left..right].to_owned();
 
                     if current == 1{
                         let output_folder = format!("./public{}",page.link);
-                        fs::create_dir_all(&output_folder);
+                        fs::create_dir_all(&output_folder).unwrap();
 
                         output = format!("{}/index.html", &output_folder);
 
                     }else{
                         let output_folder = format!("./public{}/page/{}/",page.link,current);
-                        fs::create_dir_all(&output_folder);
+                        fs::create_dir_all(&output_folder).unwrap();
                         output = format!("{}/index.html", &output_folder);
                     }
 

@@ -4,7 +4,7 @@ use std::{env, fs, process};
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
-use actix_web::{App, HttpServer, Responder};
+use actix_web::{App, HttpServer};
 use actix_files::Files;
 use chrono::Utc;
 use notify::{ Watcher, RecursiveMode};
@@ -53,7 +53,7 @@ async fn server() -> std::io::Result<()> {
 
     let mut watcher = notify::recommended_watcher(|res| {
         match res {
-            Ok(event) => {
+            Ok(_e) => {
                 generate();
                 println!("Restarted server!");
             },
