@@ -9,16 +9,10 @@ use comrak::{ComrakOptions, markdown_to_html};
 use gray_matter::Matter;
 use gray_matter::engine::{YAML};
 use tera::{Context, Tera};
+use toml::Value;
 extern crate toml;
 
-#[derive( Deserialize,Serialize,Clone, Debug)]
-pub struct Site {
-    pub title: String
-}
-#[derive( Deserialize,Serialize,Clone, Debug)]
-struct Config {
-    site: Site,
-}
+
 #[derive(Deserialize,Clone, Debug)]
 pub struct PostFrontMatter {
     pub title: String,
@@ -135,8 +129,10 @@ pub fn generate_site(){
     file.read_to_string(&mut contents).expect("无法读取文件内容");
 
     // 获取表中的数据
-    let config: Config = toml::from_str(&contents).expect("解析 TOML 配置文件失败");
-
+    
+    let parsed_toml: Value = toml::from_str(&contents).expect("Failed to parse TOML");
+    let config = parsed_toml.as_table().unwrap();
+    
     let content_path = PathBuf::from("./sources/content");
 
     let mut archive_global = Archive{
@@ -216,6 +212,7 @@ pub fn generate_site(){
     let mut context = Context::new();
     context.insert("global",&archive_global.clone());
     context.insert("config",&config);
+    
     // archive post page
     for post in &archive_global.posts{
 

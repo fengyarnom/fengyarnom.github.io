@@ -1,4 +1,9 @@
 # Site
 [site]
-title="Yarnom'Blog"
+title="Logo"
 language="en"
+
+[menu]
+archive="/archive"
+tags="/archive/tags"
+categories="/archive/categories"
