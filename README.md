@@ -3,7 +3,7 @@ A lightweight static blog generator developed using Rust
 
 ## Document
 - [中文文档](README-CN.md)
-- [英文文档](README.md)
+- [English](README.md)
 
 ## Usage
 
