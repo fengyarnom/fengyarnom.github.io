@@ -12,7 +12,7 @@
                     归档分类：
                     <ul>
                         {% for category_name in page.posts[0].categories %}
-                        <li><a href="/categories/{{category_name}}">{{category_name}}</a></li>
+                        <li><a href="/archive/categories/{{category_name}}">{{category_name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -20,7 +20,7 @@
                     标签：
                     <ul>
                         {% for tag_name in page.posts[0].tags %}
-                        <li><a href="/tags/{{tag_name}}">{{tag_name}}</a></li>
+                        <li><a href="/archive/tags/{{tag_name}}">{{tag_name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
