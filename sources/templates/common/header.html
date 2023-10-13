@@ -6,11 +6,11 @@
                 <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
             </div>
         </div>
-        
+
         <div class="nav_bar">
             <ul>
-                {% for name,link in config.menu %}
-                    <li><a href="{{link}}">{{name}}</a></li>
+                {% for item in config.menu_item %}
+                <li><a href="{{item.link}}">{{item.title}}</a></li>
                 {% endfor %}
             </ul>
         </div>

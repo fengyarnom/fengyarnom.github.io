@@ -4,6 +4,14 @@ title="Logo"
 language="en"
 
 [menu]
-archive="/archive"
-tags="/archive/tags"
-categories="/archive/categories"
+[[menu_item]]
+title="归档"
+link="/archive"
+
+[[menu_item]]
+title="标签"
+link="/archive/tags"
+
+[[menu_item]]
+title="分类 "
+link="/archive/categories"
