@@ -21,7 +21,11 @@
                 </div>
                 
                 <div class="content_post">{{post.content|safe}}</div>
-                <div class="tags_post"></div>
+                <div class="tags_post">
+                    {% for tag_name in post.tags %}
+                    <li><a href="/archive/tags/{{tag_name}}">{{tag_name}}</a></li>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     {% endfor %}
