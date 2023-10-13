@@ -203,6 +203,22 @@ body{
               }
             }
           }
+          .tags_post{
+            display: flex;
+            color:#ff7e79;
+            li{
+              list-style: none;
+              padding-right: 1em;
+              a{
+                color:#ff7e79;
+                font-weight: 700;
+              }
+              &::before{
+                content: "# ";
+                font-weight: 1000;
+              }
+            }
+          }
           li{
             word-wrap: break-word;
           }
