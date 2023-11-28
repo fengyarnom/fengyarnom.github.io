@@ -1,6 +1,5 @@
-# Site
 [site]
-title="Logo"
+title="Yarnom'Blog"
 language="en"
 
 [menu]
@@ -15,3 +14,11 @@ link="/archive/tags"
 [[menu_item]]
 title="分类 "
 link="/archive/categories"
+
+[[menu_item]]
+title="友链"
+link="/link"
+
+[[menu_item]]
+title="关于"
+link="/about"
