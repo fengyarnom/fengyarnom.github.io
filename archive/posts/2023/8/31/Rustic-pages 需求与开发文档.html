@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🐱</text></svg>">
+	<title>Rustic-pages 需求与开发文档 2023-08-31</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script async src="https://umami.yarnom.com/script.js" data-website-id="049fbfba-0566-421e-9137-533851ed8c60"></script>
+</head>
+<body>
+    <header>
+    <div class="nav_area">
+        <div class="logo">
+            <a href="/">Yarnom&#x27;Blog</a>
+            <div class="menu_mobile" onclick="toggleMenu()">
+                <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
+            </div>
+        </div>
+
+        <div class="nav_bar">
+            <ul>
+                
+                    <li><a href="&#x2F;archive">归档</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;tags">标签</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;categories">分类 </a></li>
+                
+                    <li><a href="&#x2F;link">友链</a></li>
+                
+                    <li><a href="&#x2F;about">关于</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.nav_bar');
+        menu.classList.toggle('show_nav_bar');
+    }
+</script>
+
+    
+    <div class="main_container">
+        <div class="main_content main_area">
+            
+
+<div class="post_area">
+    <div class="post">
+        <div class="header_post">
+            <div class="title_post"><a href="">Rustic-pages 需求与开发文档</a></div>
+            <div class="detail_post">
+                <div class="date">发布时间：2023-08-31</div>
+                <div class="categories">
+                    归档分类：
+                    <ul>
+                        
+                        <li><a href="/archive/categories/开发">开发</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="tags">
+                    标签：
+                    <ul>
+                        
+                        <li><a href="/archive/tags/rustic-pages">rustic-pages</a></li>
+                        
+                        <li><a href="/archive/tags/需求文档">需求文档</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content_post"><h2>1. 引言</h2>
+<p>要求使用 Rust 编写一个高效且易于使用的静态博客生成器，它将能正确处理 Markdown 和 SCSS 文件的文件。</p>
+<p>它将支持以下命令行指令：</p>
+<ul>
+<li>
+<p><code>init</code>： 初始化程序，创建相应文件夹及内容</p>
+</li>
+<li>
+<p><code>generate</code> : 渲染和生成所有的静态网站内容</p>
+</li>
+<li>
+<p><code>clean</code> : 清除缓存</p>
+</li>
+<li>
+<p><code>server</code> : 本地部署服务，该指令应该默认调用 <code>clean</code> 和 <code>generate</code></p>
+</li>
+<li>
+<p><code>deploy</code> : 自动部署静态文件到指定仓库</p>
+</li>
+</ul>
+<p>所有的内容应该均以变量的形式预先准备，然后再根据规则渲染文件。</p>
+<h2>2. 功能需求</h2>
+<h3>2.1 博文编辑</h3>
+<ul>
+<li>用户可以创建、编辑和删除博文。</li>
+<li>博文内容支持 Markdown 格式，允许用户使用 Markdown 语法编写博文。</li>
+<li>用户可以设置博文的标题、发布日期、标签和归档。</li>
+<li>用户可以上传图片和附件，并在博文中引用它们。</li>
+<li>用户可以保存博文为草稿，随时继续编辑。</li>
+</ul>
+<h3>2.2 博文生成</h3>
+<ul>
+<li>用户可以使用命令行工具生成静态网站。</li>
+<li>博客生成器将从用户指定的目录中读取博文和资源文件，并生成静态 HTML 文件。</li>
+<li>用户可以指定生成的网站目标路径。</li>
+<li>生成的网站应包括主页、博文详细页、归档页、分类页面和标签页面。</li>
+</ul>
+<h3>2.3 主题和样式</h3>
+<ul>
+<li>用户可以选择不同的博客主题和样式。</li>
+<li>博客生成器应支持多个默认主题，用户也可以自定义主题。</li>
+<li>用户可以自定义网站的样式表（CSS）。</li>
+</ul>
+<h2>3. 功能模块</h2>
+<h3>3.1 数据结构</h3>
+<h4>3.1.1 Post</h4>
+<ul>
+<li>
+<p>title: String</p>
+</li>
+<li>
+<p>date: String</p>
+</li>
+<li>
+<p>date_simple : String</p>
+</li>
+<li>
+<p>published: bool</p>
+</li>
+<li>
+<p>tags: Vec<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>categories: Vec<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>raw_content: String</p>
+</li>
+<li>
+<p>content: String</p>
+</li>
+<li>
+<p>slug: String</p>
+</li>
+<li>
+<p>link: String</p>
+</li>
+</ul>
+<h4>3.1.2 Page</h4>
+<ul>
+<li>
+<p>title: String,</p>
+</li>
+<li>
+<p>date: String,</p>
+</li>
+<li>
+<p>template: String,</p>
+</li>
+<li>
+<p>raw_content: String,</p>
+</li>
+<li>
+<p>content: String,</p>
+</li>
+<li>
+<p>limited_cows:usize,</p>
+</li>
+<li>
+<p>total: usize,</p>
+</li>
+<li>
+<p>current: usize,</p>
+</li>
+<li>
+<p>prev:usize,</p>
+</li>
+<li>
+<p>prev_link: String,</p>
+</li>
+<li>
+<p>next:usize,</p>
+</li>
+<li>
+<p>next_link: String</p>
+</li>
+</ul>
+<h4>3.1.3 Archive</h4>
+<ul>
+<li>posts - Vec<!-- raw HTML omitted --></li>
+<li>pages: Vec<!-- raw HTML omitted --></li>
+<li>tags: HashMap&lt;String,Vec&lt;&amp; Post&gt;&gt;</li>
+<li>categories: HashMap&lt;String,Vec&lt;&amp; Post&gt;&gt;</li>
+</ul>
+<h4>3.1.4 Config</h4>
+<p>pass</p>
+<h3>3.2 构建逻辑（Generate）</h3>
+<ol>
+<li>
+<p>程序首先构造一个 Archive 实例，用于保存接下来所有的变量数据。</p>
+</li>
+<li>
+<p>Post 处理过程</p>
+<ol>
+<li>从 /source/content/posts 中获取所有的 markdown 文件，并进行解析，封装为一个可操作的 Post 数据实例。</li>
+<li>所有的Post 插入到  Archive.posts</li>
+</ol>
+</li>
+<li>
+<p>Tag 处理过程</p>
+<ol>
+<li>遍历 Archive.posts 将每个Post 内的 Tag 解析</li>
+<li>所有的 Tag 插入到 Archive.tags</li>
+</ol>
+</li>
+<li>
+<p>Category 处理过程</p>
+<ol>
+<li>遍历 Archive.posts 将每个Post 内的 Category 解析</li>
+<li>所有的 Category 插入到 Archive.categories</li>
+</ol>
+</li>
+<li>
+<p>页面构造逻辑</p>
+<ol>
+<li>从 /source/content/pages 中获取所有的 markdown 文件，进行解析，封装为一个可操作的 Page 数据实例</li>
+<li>所有的 Page 插入到 Archive.pages</li>
+<li>若是front-matter 带有 pagination: tags,则对 Archive.tags 触发分页</li>
+<li>若是front-matter 带有 template: xxx ，则渲染模板，否则默认输出 content</li>
+</ol>
+</li>
+</ol>
+<h3>3.3 路径渲染逻辑</h3>
+<ul>
+<li>Index - Page
+<ul>
+<li>/public/index.html</li>
+<li>/public/page/N/index.html</li>
+</ul>
+</li>
+<li>Archive
+<ul>
+<li>/public/archive/posts/2023/12/10/hello/index.html</li>
+<li>/public/archive/tags/技术/index.html</li>
+<li>/public/archive/categories/算法/index.html</li>
+</ul>
+</li>
+<li>Tags - Page
+<ul>
+<li>/public/tags/index.html</li>
+<li>/public/tags/page/N/index.html</li>
+</ul>
+</li>
+<li>Categories - Page
+<ul>
+<li>/public/categories/index.html</li>
+<li>/public/categories/page/N/index.html</li>
+</ul>
+</li>
+<li>Custom Page
+<ul>
+<li>/public/custom/index.html</li>
+<li>/public/custom/page/N/index.html</li>
+</ul>
+</li>
+</ul>
+<h2>README 文档</h2>
+<p>A lightweight static blog generator developed using Rust</p>
+<h2>Usage</h2>
+<p>You can compile the source code of this project using the cargo build command.</p>
+<pre><code class="language-shell">cargo build
+</code></pre>
+<p>When you run cargo build, it searches for the Cargo.toml file in the current directory and builds the project based on the configuration information specified in that file.
+<code>Cargo.toml</code> is the configuration file for Rust projects and contains the project's dependencies and other build configurations.</p>
+</div>
+    </div>
+    <script src="https://giscus.app/client.js"
+        data-repo="fengyarnom/fengyarnom.github.io"
+        data-repo-id="R_kgDOJAggHw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJAggH84CXNA3"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+        </div>
+    </div>
+
+    
+</body>
+<footer>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+</footer> 
+</html>
