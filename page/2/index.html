@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🐱</text></svg>">
+	<title>Yarnom&#x27;Blog</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });
+        });
+    </script>
+
+    <script async src="https://umami.yarnom.com/script.js" data-website-id="049fbfba-0566-421e-9137-533851ed8c60"></script>
+</head>
+<body>
+    <header>
+    <div class="nav_area">
+        <div class="logo">
+            <a href="/">Yarnom&#x27;Blog</a>
+            <div class="menu_mobile" onclick="toggleMenu()">
+                <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
+            </div>
+        </div>
+
+        <div class="nav_bar">
+            <ul>
+                
+                    <li><a href="&#x2F;archive">归档</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;tags">标签</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;categories">分类 </a></li>
+                
+                    <li><a href="&#x2F;link">友链</a></li>
+                
+                    <li><a href="&#x2F;about">关于</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.nav_bar');
+        menu.classList.toggle('show_nav_bar');
+    }
+</script>
+
+    
+    <div class="main_container">
+        <div class="main_content main_area">
+            
+    
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;6&#x2F;14&#x2F;🎉 评论区功能上线.html">🎉 评论区功能上线</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-06-14 17:29:46</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/开发">开发</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>今天上线了友链，于是寻思着把评论区也添加上，使用的是 <a href="https://giscus.app/zh-CN">giscus</a> ，这是利用 <a href="https://docs.github.com/en/discussions">GitHub Discussions</a> 实现的评论系统。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/网站维护">网站维护</a></li>
+                    
+                    <li><a href="/archive/tags/开发记录">开发记录</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;6&#x2F;14&#x2F;🎉 友链功能上线.html">🎉 友链功能上线</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-06-14 16:03:31</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/开发">开发</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>今日和朋友闲聊，话题扯到了我们各自的博客上，我周围写博客的人还是蛮少的，很高兴他也一直在写博客，于是我们便萌生了交换友链的想法。</p>
+<p>但问题在于，我的博客并没有这个功能，但是 Hexo 完成这个功能也简单，这也是静态博客的一大优势，代码的实现非常简单。</p>
+<p>于是在经过了两分钟的编程后，我正式宣布我的博客友链功能正式上线 ！！！🎉🎉🎉</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/网站维护">网站维护</a></li>
+                    
+                    <li><a href="/archive/tags/开发记录">开发记录</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;6&#x2F;14&#x2F;忙.html">忙</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-06-14 12:20:18</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/随笔">随笔</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>最近事情真的很多，实训整得我莫名其妙地很累，也没啥时间写博文，况且静态博客的弊端就是无法随时地去写啦，最近想着要不要用 java 去搭建一个服务，上面用来写一些短的评论或者吐槽的话语，目前的初步想法是这样的。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/post">post</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;5&#x2F;20&#x2F;看完了 NeoVim 的 Tutor 文档.html">看完了 NeoVim 的 Tutor 文档</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-05-20 20:37:16</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/随笔">随笔</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>今天闲得没事干，于是想起了可以看看 NeoVim 提供的入门文档，是的，它是全英文的，但是里面的单词还是很简单的，颇为流畅地通读了一遍。之前只是知道一些零零散散的命令，如今感觉好多了，又学习到了很多新的知识。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/neovim">neovim</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;5&#x2F;9&#x2F;Extract tar.gz file to a directory and create the directory if not exist.html">Extract tar.gz file to a directory and create the directory if not exist</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-05-09 16:14:24</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/教程">教程</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>Description</h2>
+<p>I can run the following command to extract the tar.gz file to 'somedir' directory, But this command requires that the directory already exists.</p>
+<pre><code class="language-bash">tar -xvf somefile.tar.gz -C somedir
+</code></pre>
+<h2>Solution</h2>
+<p>Following command can extract the somefile.tar.gz file to a directory that does not exist.</p>
+<pre><code class="language-bash">tar -xf somefile.tar.gz --one-top-level=somedir
+</code></pre>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/extract">extract</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;5&#x2F;5&#x2F;dwm 和 st 的安装及补丁.html">dwm 和 st 的安装及补丁</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-05-05 15:59:30</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/教程">教程</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>前言</h2>
+<p>得益于近些日子在学校深入学习了很多关于 Linux 的知识，加之之前也多次重装过 Arch ，这些因素综合起来后，这一次的系统安装可以说颇为顺畅，之前因无法理解的地方而导致难以下手的操作，所赖知识见长，逐渐克服且熟练了起来。</p>
+<p>本次为了更加深入地去学习 Linux ，所以放弃了像 Gnome 这样简单易用的桌面环境, 而是使用像 DWM 这样更简单的窗口管理器，虽然是自找麻烦，但我也乐在其中，我会在本文中简略地记录下折腾的过程。</p>
+<h2>DWM 和 st 的安装</h2>
+<p>事实上安装 DWM 非常的简单，自需要从 suckless 官网下载源码文件即可。</p>
+<pre><code class="language-bash">
+$ git clone git://git.suckless.org/dwm
+$ cd dwm
+$ make
+# sudo make install
+
+</code></pre>
+<p>编译安装后，我这里是通过 xrog 的 <code>.xinitrc</code> 从 tty 终端使用 <code>startx</code> 命令启动的：</p>
+<pre><code class="language-bash">exec dwm
+</code></pre>
+<p>启动之后的第一眼就是简陋，目前还什么都干不了，因为我甚至还没安装终端，suckless 也提供了一个 xrog 下的终端实现，叫 <code>st</code> 。
+通过魔法键回到 tty （ps.当然也可以通过快捷键：<code>Alt</code>  <code>+</code> <code>Shift</code> <code>+</code> <code>Q</code> 退出 dwm )，通过 tty 的终端去下载 st 源码。</p>
+<p>同样也是通过源码安装：</p>
+<pre><code class="language-bash">$ git clone https://git.suckless.org/st
+$ cd st
+$ make
+# sudo make install
+</code></pre>
+<p>编译安装完后，在dwm便应该通过<code>Alt</code> <code>+</code> <code>Shift</code> <code>+</code> <code>Enter</code> 组合键启动 <code>st</code> 管终端。但是毫无疑问，也是十分简陋，甚至字体小到无法看清……</p>
+<p>不过问题不大，我学过 C ，源码文件是能看懂的，首先就是修改了字体大小，顺带一提我还通过 pacman 包管理下载了 [ttf-fira-code] 字体。</p>
+<p>首先来修改一下 dwm 的字体和其大小：</p>
+<pre><code class="language-c"># dwm &gt; config.h
+
+static const char *fonts[]          = { &quot;Fira Code:size=14&quot; };
+static const char dmenufont[]       = &quot;Fira Code:size=14&quot;;
+
+</code></pre>
+<p>保存后通过 <code>sudo make clean install</code> 命令安装即可</p>
+<p>接着修改 st 终端的字体和大小：</p>
+<pre><code class="language-c"># st &gt; config.h
+
+static char *font = &quot;Fira Code:style=Bold:pixelsize=23:antialias=true:autohint=true&quot;;
+</code></pre>
+<p>保存后通过 <code>sudo make clean install</code> 命令安装即可</p>
+<p>这样修改完后，便好看很多了。</p>
+<h2>安装 dmenu</h2>
+<p>这个就是 suckless 的程序托盘？
+总之，安装后，可以快速打开程序，也是蛮好的，这个就没有使用源码安装了，不过听说它也有很多好玩之处，之后再研究吧，总之 dmenu 通过包管理器安装：</p>
+<pre><code class="language-bash">$ sudo pacman -S dmenu
+</code></pre>
+<h2>给 dwm 打补丁</h2>
+<p>Dwm 目前其实足够我使用了， 这里就打一个透明补丁: 「 <a href="https://dwm.suckless.org/patches/alpha/dwm-alpha-20201019-61bb8b2.diff">alpha.diff</a>  」</p>
+<pre><code class="language-bash">$ wget https://dwm.suckless.org/patches/alpha/dwm-alpha-20201019-61bb8b2.diff
+$ patch p1 &lt; dwm-alpha-20201019-61bb8b2.diff
+
+</code></pre>
+<p>通过 <code>patch</code> 命令 把补丁打进去即可，之前我都没怎么用过这个 patch 命令，用多了其实也还好，出现错误了，手动去修改源文件即可。</p>
+<h2>给 st 打补丁</h2>
+<p>这里打了好几个补丁：</p>
+<ul>
+<li>「 <a href="https://st.suckless.org/patches/alpha/st-alpha-20220206-0.8.5.diff">st-alpha-20220206-0.8.5.diff</a>  」 这是改变st透明度的补丁。</li>
+<li>「 <a href="https://st.suckless.org/patches/scrollback/st-scrollback-20210507-4536f46.diff">st-scrollback-20210507-4536f46.diff</a> 」这是让 st 终端支持回滚（按键支持）</li>
+<li>「 <a href="https://st.suckless.org/patches/scrollback/st-scrollback-mouse-20220127-2c5edf2.diff">st-scrollback-mouse-20220127-2c5edf2.diff</a> 」这是回滚的鼠标滚轮支持(ps.需要先安装scrollback 补丁)</li>
+</ul>
+<p>也是一样地通过 <code>patch</code> 命令打进去，这里就不再赘述了。</p>
+<h2>安装 picom</h2>
+<p>这是一个合成管理器，可以给窗口管理器带来需要效果，比如透明、阴影，上面的透明补丁也需要它的安装才能真正起作用。</p>
+<pre><code class="language-bash">$ sudo pacman -S picom
+</code></pre>
+<p>安装完后，编辑 <code>~/.xinitrc</code> 文件,进程让它以 Daemon（后台） 的形式运行。</p>
+<pre><code class="language-bash">compton -b
+</code></pre>
+<p>（未完待续）</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/dwm">dwm</a></li>
+                    
+                    <li><a href="/archive/tags/st">st</a></li>
+                    
+                    <li><a href="/archive/tags/dmenu">dmenu</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;5&#x2F;3&#x2F;重新安装 Archlinux.html">重新安装 Archlinux</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-05-03 11:22:11</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/随笔">随笔</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>前言</h2>
+<p>最近系统频繁死机，通过初步判断，应该是图形界面的卡死，但不合理的是 —— 我无法通过魔法键退出到tty界面……</p>
+<p>我尝试了复现，但这似乎是没有规律的，我其实开始怀疑是我的SSD的问题了，但转头用了两天DWM，期间没有出现卡死现象，那问题很大可能就是图形界面卡死，Gnome和我目前的系统内核不匹配？</p>
+<p>总之，我决定对系统做一次全面的重置。</p>
+<p>这里放一个 Chrome 插件： <a href="/download/Ghelper-v2.8.2.crx">Ghelper</a></p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/archlinux">archlinux</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;4&#x2F;6&#x2F;[NFS] mount: Connection timed out.html">[NFS] mount: Connection timed out</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-04-06 20:09:29</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/ARM">ARM</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>问题描述</h2>
+<p>Linux 服务端和 Arm 开发板客户端进行 NFS 服务的连接。</p>
+<p>Linux 和 Arm 开发板之间能ping通，并且处于同一网端，且掩码、网口相同，但是在执行下面的程序时发生超时错误。</p>
+<p>在服务端的nfs配置完全正确的情况下，Arm开发板还是无法正确连接nfs服务器。</p>
+<pre><code class="language-bash">[root@FORLINX6410]# mount -t nfs -o nolock,hard 192.168.1.5:/home/yarnom/nfs /mnt
+mount: mounting 192.168.1.5:/home/yarnom/nfs on /mnt failed: Connection timed out
+
+</code></pre>
+<h2>解决</h2>
+<p>这个问题困扰了我两天终于在这个<a href="https://stackoverflow.com/questions/45938202/mount-nfs-connection-timed-out-on-ubuntu-14-04-1-lts">帖子</a>里找到了解决方案。</p>
+<blockquote>
+<p>Mount the NFS filesystem using the TCP protocol instead of the default UDP protocol. Many NFS servers only support UDP.</p>
+</blockquote>
+<p>这是在NFSv3中添加了对TCP协议的支持：</p>
+<p>总之，我尝试了下面的命令，使用了tcp协议：</p>
+<pre><code class="language-bash">$ mount -t nfs -o nolock,proto=tcp,port=2049 192.168.1.5:/home/yarnom/nfs /mnt
+</code></pre>
+<p>这个协议最终使我正确连接上了nfs服务器。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/NFS">NFS</a></li>
+                    
+                    <li><a href="/archive/tags/ARM">ARM</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="paginator">
+    
+        <a href="&#x2F;" class="extend prev">上一页</a>
+    
+        <a href="" class="page_number current">2</a>
+    
+        <a href="&#x2F;page&#x2F;3" class="extend next">下一页</a>
+    
+
+</div>
+
+        </div>
+    </div>
+
+    
+</body>
+<footer>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+</footer> 
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🐱</text></svg>">
+	<title>九月与十月 2023-10-12</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });
+        });
+    </script>
+
+    <script async src="https://umami.yarnom.com/script.js" data-website-id="049fbfba-0566-421e-9137-533851ed8c60"></script>
+</head>
+<body>
+    <header>
+    <div class="nav_area">
+        <div class="logo">
+            <a href="/">Yarnom&#x27;Blog</a>
+            <div class="menu_mobile" onclick="toggleMenu()">
+                <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
+            </div>
+        </div>
+
+        <div class="nav_bar">
+            <ul>
+                
+                    <li><a href="&#x2F;archive">归档</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;tags">标签</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;categories">分类 </a></li>
+                
+                    <li><a href="&#x2F;link">友链</a></li>
+                
+                    <li><a href="&#x2F;about">关于</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.nav_bar');
+        menu.classList.toggle('show_nav_bar');
+    }
+</script>
+
+    
+    <div class="main_container">
+        <div class="main_content main_area">
+            
+
+<div class="post_area">
+    <div class="post">
+        <div class="header_post">
+            <div class="title_post"><a href="">九月与十月</a></div>
+            <div class="detail_post">
+                <div class="date">发布时间：2023-10-12</div>
+                <div class="categories">
+                    归档分类：
+                    <ul>
+                        
+                        <li><a href="/archive/categories/随笔">随笔</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="tags">
+                    标签：
+                    <ul>
+                        
+                        <li><a href="/archive/tags/思考">思考</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content_post"><p>这个月继续完善 rustic-pages ，这个项目是八月的时候发起的，十月我对它进行了一次重构，目前已经基本完成，代码并没有进行什么模块的拆分，因为我还没完全吃透 rust ，随意套用一些模式会出现意想不到的问题。</p>
+<p>因为 rust 的特性，引用借用这些很严格，所以在 0.1.4 以前的版本中，我并没有使用生命周期，所以这不可避免得导致了解析和生成的缓慢，但这仍然是可以接受的。在重构之前，我对 rust 的生命周期理解得还不充分，在拆分模块之后，代码几乎无法正确运行，同时依赖的包也无法自动解析这类的引用类型，我想我在学习 rust 的时候必然是缺失了一些知识，我对数据类型的了解还不够充分。</p>
+<p>但是这是一个长期的项目，文档编写的工作也十分繁琐，前期的需求文档已经不足以支持我继续开发了，很多新的特性也在我脑子里蹦出来，我需要更多的时间去完成这些工作。但是目前的我最缺少的就是时间，我仍在准备研究生考试，加之我最近打算弄一个软件著作，时间上总是有些不够呢。</p>
+<hr />
+<p>不同于之前的观念，维护一个项目是有趣的，将脑海里的新特性实现于代码之中，这确实很有成就感。</p>
+<p>当然了，其实我应该多加入一些方便用户使用的脚本或者功能，事实上，目前的版本只能是将 sources 里的 markdown 源文件渲染到 public 里，但是没有实现类似与 Hexo 中的 deploy 指令，这涉及到一些 git 操作，我目前还是不太了解，虽然我在我自己博客中实现了这一脚本，但是我不确定如果这个脚本在其他电脑中会出现些什么。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+current_datetime=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)
+TEMP_DIR=$(mktemp -d)
+cp -r public/* &quot;$TEMP_DIR&quot;
+cd &quot;$TEMP_DIR&quot;
+git init
+
+git add .
+git commit -m &quot;Update: $current_datetime&quot;
+git remote add origin &quot;git@github.com:fengyarnom/fengyarnom.github.io.git&quot;
+git push -f origin &quot;master:gh-pages&quot;
+# 清理临时目录
+cd ..
+rm -rf &quot;$TEMP_DIR&quot;
+
+</code></pre>
+</div>
+    </div>
+    <script src="https://giscus.app/client.js"
+        data-repo="fengyarnom/fengyarnom.github.io"
+        data-repo-id="R_kgDOJAggHw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJAggH84CXNA3"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+        </div>
+    </div>
+
+    
+</body>
+<footer>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+</footer> 
+</html>

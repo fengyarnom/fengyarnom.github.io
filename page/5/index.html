@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🐱</text></svg>">
+	<title>Yarnom&#x27;Blog</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });
+        });
+    </script>
+
+    <script async src="https://umami.yarnom.com/script.js" data-website-id="049fbfba-0566-421e-9137-533851ed8c60"></script>
+</head>
+<body>
+    <header>
+    <div class="nav_area">
+        <div class="logo">
+            <a href="/">Yarnom&#x27;Blog</a>
+            <div class="menu_mobile" onclick="toggleMenu()">
+                <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
+            </div>
+        </div>
+
+        <div class="nav_bar">
+            <ul>
+                
+                    <li><a href="&#x2F;archive">归档</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;tags">标签</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;categories">分类 </a></li>
+                
+                    <li><a href="&#x2F;link">友链</a></li>
+                
+                    <li><a href="&#x2F;about">关于</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.nav_bar');
+        menu.classList.toggle('show_nav_bar');
+    }
+</script>
+
+    
+    <div class="main_container">
+        <div class="main_content main_area">
+            
+    
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2022&#x2F;10&#x2F;16&#x2F;Linux 进程学习 二.html">Linux 进程学习 二</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2022-10-16 16:13:33</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/Linux 进程">Linux 进程</a></li>
+                                
+                                <li><a href="/archive/categories/教程">教程</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>创建进程</h2>
+<p>在 Linux 中每个进程都是父进程创建的，Linux 启动时会创建init 进程，这是系统的第一个进程，其 PID 为 1。
+在 C 语言中，我们可以用fork函数创建新的进程：</p>
+<pre><code class="language-c">#include &lt;unistd.h&gt;
+pid_t fork(void);
+</code></pre>
+<ul>
+<li>If fork() returns a negative value, the creation of a child process was unsuccessful.</li>
+<li>fork() returns a zero to the newly created child process.</li>
+<li>fork() returns a positive value, the process ID of the child process, to the parent. The returned process ID is of type pid_t defined in sys/types.h. Normally, the process ID is an integer. Moreover, a process can use function getpid() to retrieve the process ID assigned to this process.</li>
+</ul>
+<p>也就是：</p>
+<blockquote>
+<p>On success, the PID of the child process is returned in the
+parent, and 0 is returned in the child.  On failure, -1 is
+returned in the parent, no child process is created, and errno is
+set to indicate the error.</p>
+</blockquote>
+<p>也就是：</p>
+<ul>
+<li>返回负数，创建失败</li>
+<li>返回 0 ，就是子进程，它永远返回 0</li>
+<li>返回大于 0 的整数，这是父进程，它会返回子进程的pid</li>
+</ul>
+<h2>终止进程</h2>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/Linux">Linux</a></li>
+                    
+                    <li><a href="/archive/tags/进程">进程</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2022&#x2F;10&#x2F;16&#x2F;Linux 进程学习 一.html">Linux 进程学习 一</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2022-10-16 15:54:11</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/Linux 进程">Linux 进程</a></li>
+                                
+                                <li><a href="/archive/categories/教程">教程</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>什么是进程？</h2>
+<p>在了解进程的时候，首先得知道什么是程序。
+操作系统其实学过，程序被执行时，操作系统将可执行文件复制到内存中，这就是程序，而进程则是程序的实例，是系统资源分配的基本单位，它被唯一标识于 PCB 之中，也就是进程控制块。</p>
+<h2>ps 命令 查看进程</h2>
+<blockquote>
+<p>Note that ps -aux is distinct from ps aux.  The POSIX and UNIX standards require that ps -aux print all processes owned by a user named x, as well as printing all processes that would be selected by the -a option.  If the user named x does not exist, this ps may
+interpret the command as ps aux instead and print a warning.  This behavior is intended to aid in transitioning old scripts and habits. It is fragile, subject to change, and thus should not be relied upon.</p>
+</blockquote>
+<blockquote>
+<p>To see every process on the system using BSD syntax:
+ps ax
+ps axu</p>
+</blockquote>
+<p>也就是说，我们可以通过 <strong>ps axu</strong> 来查看系统中的进程</p>
+<h2>top 命令 查看进程</h2>
+<blockquote>
+<p>The  top program provides a dynamic real-time view of a running system.</p>
+</blockquote>
+<p>这个命令显示的进程状态是动态更新的。
+以下是常用命令：</p>
+<ul>
+<li>q：退出top命令</li>
+<li><!-- raw HTML omitted -->：立即刷新</li>
+<li>s：设置刷新时间间隔</li>
+<li>t：显示或隐藏进程和CPU状态信息</li>
+<li>m：显示或隐藏内存状态信息</li>
+<li>P：按%CPU使用率排行</li>
+<li>M：按%MEM排行</li>
+<li>u：指定显示用户进程</li>
+<li>k：kill进程</li>
+<li>i：只显示正在运行的进程</li>
+<li>h：帮助命令。</li>
+</ul>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/Linux">Linux</a></li>
+                    
+                    <li><a href="/archive/tags/进程">进程</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2022&#x2F;10&#x2F;14&#x2F;git 学习.html">git 学习</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2022-10-14 21:06:13</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/git">git</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>git 虽说也用了蛮久的了，但是其实来来去去也是一些基础操作，更深入的倒也没有怎么去学，趁着这段时间稍微有些时间，把以前的笔记整理到这里来，也方便之后来查看。</p>
+<h2>git commit</h2>
+<p>这个命令用于提交记录</p>
+<pre><code class="language-git">git commit
+</code></pre>
+<h2>git branch newImage</h2>
+<p>这个命令用于创建新的分支。</p>
+<p>Git 的分支也非常轻量。它们只是简单地指向某个提交纪录 —— 仅此而已。所以许多 Git 爱好者传颂。</p>
+<p><em><strong>早建分支！多用分支！</strong></em></p>
+<p>这是因为即使创建再多的分支也不会造成储存或内存上的开销，并且按逻辑分解工作到不同的分支要比维护那些特别臃肿的分支简单多了。</p>
+<p>在将分支和提交记录结合起来后，我们会看到两者如何协作。现在只要记住使用分支其实就相当于在说：“我想基于这个提交以及它所有的父提交进行新的工作。”</p>
+<h3>创建分支</h3>
+<pre><code class="language-git">git branch newImage
+</code></pre>
+<h3>切换分支</h3>
+<pre><code class="language-git">git checkout &lt;name&gt;
+</code></pre>
+<h3>融合分支</h3>
+<pre><code class="language-git">git merge &lt;name&gt;
+</code></pre>
+<h2>重基</h2>
+<pre><code>git rebase &lt;name&gt;
+</code></pre>
+<h2>^ 和 ~number</h2>
+<pre><code class="language-git">可以通过 ^ 符号向上找到父节点
+~ 则是多个
+</code></pre>
+<h2>Git Reset</h2>
+<p>git reset 通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”。git reset 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。</p>
+<h2>Git Revert</h2>
+<p>虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！</p>
+<p>奇怪！在我们要撤销的提交记录后面居然多了一个新提交！这是因为新提交记录 C2' 引入了更改 —— 这些更改刚好是用来撤销 C2 这个提交的。也就是说 C2' 的状态与 C1 是相同的。</p>
+<p>revert 之后就可以把你的更改推送到远程仓库与别人分享啦。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/git">git</a></li>
+                    
+                    <li><a href="/archive/tags/学习">学习</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2022&#x2F;10&#x2F;11&#x2F;React 前端加载优化.html">React 前端加载优化</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2022-10-11 18:13:47</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/开发">开发</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>主要问题</h2>
+<p>这次的 December 项目采用的是前后端分离的技术，交互使用的是 Axios ，但目前遇到的问题是，首次加载网站的时间过于久了，根据 report 的分析，我认为可能存在的问题是 react-router-dom 一次性加载了所有的组件，导致了加载变慢。</p>
+<p>所以，主要的解决策略集中在对 router 的懒加载上，让它分批次地加载组件。</p>
+<p>当然我还怀疑 React-Mui 组件库也拖慢了网站的加载，毕竟它是有些大的，但是应该还好，毕竟加载时是分开导入的，先解决 Router 的问题吧</p>
+<h2>解决方案</h2>
+<p>导入 lazy,Suspense 包</p>
+<pre><code class="language-js">import { lazy,Suspense } from 'react';
+</code></pre>
+<p>lazy 用于懒加载 ， Suspense 用于加载 loading</p>
+<pre><code class="language-js">const MyComponent = lazy(() =&gt; import('./MyComponent'))
+
+&lt;Suspense fallback={&lt;div&gt;Loading...&lt;/div&gt;}&gt;
+	&lt;RouterProvider router={router} /&gt;
+&lt;/Suspense&gt;
+</code></pre>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/React">React</a></li>
+                    
+                    <li><a href="/archive/tags/开发记录">开发记录</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2022&#x2F;10&#x2F;11&#x2F;Rust 即将成为 linux 内核的第二语言.html">Rust 即将成为 linux 内核的第二语言</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2022-10-11 13:04:48</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/随笔">随笔</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>今天又看到了一则消息，2022年 Rust 将成为 Linux 内核第二官方语言。</p>
+<p>我认为这绝对是一个好消息。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/Rust">Rust</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2022&#x2F;10&#x2F;10&#x2F;December 项目 1a 版本释出.html">December 项目 1a 版本释出</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2022-10-10 16:20:46</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/开发">开发</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>开发</h2>
+<p>December 总体采用前后端分离技术。
+前端使用 React 、React-MU 和 基础前端构建语言，后端使用 FLask 和 Sqlite3 。</p>
+<p>目前已初步开发完成，并且将代码规模控制在一定范围，后端部分代码也进行了不同程度地优化，这将是一个可长期维护的项目。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/开发记录">开发记录</a></li>
+                    
+                    <li><a href="/archive/tags/December">December</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="paginator">
+    
+        <a href="&#x2F;page&#x2F;4" class="extend prev">上一页</a>
+    
+        <a href="" class="page_number current">5</a>
+    
+
+</div>
+
+        </div>
+    </div>
+
+    
+</body>
+<footer>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+</footer> 
+</html>
