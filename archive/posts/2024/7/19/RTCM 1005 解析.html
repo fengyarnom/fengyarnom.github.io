@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🐱</text></svg>">
+	<title>RTCM 1005 解析 2024-07-19</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });
+        });
+    </script>
+
+    <script async src="https://umami.yarnom.com/script.js" data-website-id="049fbfba-0566-421e-9137-533851ed8c60"></script>
+</head>
+<body>
+    <header>
+    <div class="nav_area">
+        <div class="logo">
+            <a href="/">Yarnom&#x27;Blog</a>
+            <div class="menu_mobile" onclick="toggleMenu()">
+                <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
+            </div>
+        </div>
+
+        <div class="nav_bar">
+            <ul>
+                
+                    <li><a href="&#x2F;archive">归档</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;tags">标签</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;categories">分类 </a></li>
+                
+                    <li><a href="&#x2F;link">友链</a></li>
+                
+                    <li><a href="&#x2F;about">关于</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.nav_bar');
+        menu.classList.toggle('show_nav_bar');
+    }
+</script>
+
+    
+    <div class="main_container">
+        <div class="main_content main_area">
+            
+
+<div class="post_area">
+    <div class="post">
+        <div class="header_post">
+            <div class="title_post"><a href="">RTCM 1005 解析</a></div>
+            <div class="detail_post">
+                <div class="date">发布时间：2024-07-19</div>
+                <div class="categories">
+                    归档分类：
+                    <ul>
+                        
+                        <li><a href="/archive/categories/协议">协议</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="tags">
+                    标签：
+                    <ul>
+                        
+                        <li><a href="/archive/tags/RTCM 1005">RTCM 1005</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content_post"><h3>前言</h3>
+<p>RTCM 是一种普遍采用的数据传输格式，它是由国际海运事业无线电技术委员会提出的，用于制定在差分全球导航定位系统和实时动态操作时使用的标准。</p>
+<p>下面是技术规范文档：</p>
+<ul>
+<li><a href="https://rtcm.myshopify.com/products/rtcm-10403-3-differential-gnss-global-navigation-satellite-systems-services-version-3-amendment-2-may-20-2021">RTCM3.3 c10403.3_all.PDF</a></li>
+<li><a href="http://www.bynav.cn/media/upload/cms_15/AN018_RTCM3.2%E6%A0%BC%E5%BC%8F%E8%AF%B4%E6%98%8E_%E5%8C%97%E4%BA%91%E7%A7%91%E6%8A%80.pdf">北云科技技术文档</a></li>
+</ul>
+<p>第一个文档是官方的，包含了很多的细节，但是需要付费，虽说有其他方式获得，但版权原因还是不在此贴出；</p>
+<p>第二个文档是北云科技的，中文文档虽说少了一些细节，但终究方便阅读，虽然本文不会参考它 :)</p>
+<h3>文档解读</h3>
+<p>RTK的消息类型有很多，初看会很懵，但在只要找到自己想要了解的消息类型即可，在文档的 <strong>3.2 节 Message Type Summary</strong> 中有详细的介绍，本文主要关注 1005 这个消息类型，它由 19 个字节也就是 152 个比特构成，它主要包含基准站位置数据信息，也就是基站的 ECEF 的坐标。</p>
+<p><img src="https://s2.loli.net/2024/08/05/RaPYsoigDQx9bdJ.png" alt="Screenshot from 2024-08-05 09-41-51.png" /></p>
+<p>在正式阅读之前，还需要了解一下数据结构和类型，在文档的 <strong>3.3节 Data Types</strong> 有详细的介绍：</p>
+<p>数据类型很好理解，它规定了数据的范围和构成，后面写程序做转换的时候要严格按照本节的数据结构来实现。</p>
+<p><img src="https://s2.loli.net/2024/08/05/NnBhPOSTv6WiQXE.png" alt="image.png" /></p>
+<p>下面是这个协议具体的内容， 后面会详细分析：</p>
+<p><img src="https://s2.loli.net/2024/08/05/wpTWIeMRGxCgiKB.png" alt="image.png" /></p>
+<hr />
+<h3>解算</h3>
+<p>下面给出一段 RTCM 1005 的原始码流，它是十六进制的 ASCII ：</p>
+<pre><code>D3 00 13 3E D7 D3 02 02 98 0E DE EF 34 B4 BD 62 AC 09 41 98 6F 33 36 0B 98
+</code></pre>
+<p>在手动计算之前，还需要了解一下它在传输时候的格式，RTCM 数据以帧的形式的传输</p>
+<p><img src="https://s2.loli.net/2024/08/05/qzBoWSIQyPXiNL6.png" alt="image.png" /></p>
+<ul>
+<li>Preamble ： 同步码（8 bits） ， 11010011 ，其十六进制为 'D3'</li>
+<li>Reserved ：  保留（6 bits），000000，十六进制为 00</li>
+<li>Message Length： 长度（10 bits），数据信息的长度，以字节数表示</li>
+<li>Variable Length Data Message（0-1023 bytes）： 可变长数据消息，长度不定，最大 1023 bytes</li>
+<li>CRC：校验（24 bits）</li>
+</ul>
+<p>所以 RCTM 1005 每帧大致长这样： <strong>1101 0011 0000 00 + 长度 + 数据 +  校验</strong></p>
+<p>开头固定为 ：  <strong>1101 0011 0000 00</strong> ，十六进制就是 <strong>D30</strong> ，我们再回头看一下原始码流：</p>
+<pre><code>D3 00 13 3E D7 D3 02 02 98 0E DE EF 34 B4 BD 62 AC 09 41 98 6F 33 36 0B 98
+</code></pre>
+<p>前三个十六进制 ASCII 码 我们就能解析出来了，后面紧跟着的是消息长度，它使用 10 个 bit 存储</p>
+<pre><code class="language-D3">Hex： D3 00 13
+Binary： 1101 0011 0000 0000 0001 0011
+</code></pre>
+<p>所以，同步码 + 保留 + 长度 总共就用了 24 个 bit ，也就是 3 个字节</p>
+<p>接下来就是可变长度的数据消息了，下面的表格就是 1005 类型的数据内容：</p>
+<pre><code>DATA FIELD                                  DF NUMBER   DATA TYPE   NO. OF BITS
+-------------------------------------------------------------------------------
+Message Number (&quot;1005&quot;=0011 1110 1101)      DF002       uint12      12
+Reference Station ID                        DF003       uint12      12
+Reserved for ITRF Realization Year          DF021       uint6       6
+GPS Indicator                               DF022       bit(1)      1
+GLONASS Indicator                           DF023       bit(1)      1
+Reserved for Galileo Indicator              DF024       bit(1)      1
+Reference-Station Indicator                 DF141       bit(1)      1
+Antenna Reference Point ECEF-X              DF025       int38       38
+Single Receiver Oscillator Indicator        DF142       bit(1)      1
+Reserved                                    DF001       bit(1)      1
+Antenna Reference Point ECEF-Y              DF026       int38       38
+Quarter Cycle Indicator                     DF364       bit(2)      2
+Antenna Reference Point ECEF-Z              DF027       int38       38
+-------------------------------------------------------------------------------
+TOTAL                                                               152
+</code></pre>
+<h4>Message Number (&quot;1005&quot;=0011 1110 1101)</h4>
+<p>它的长度 12 个比特，也就是 3 个 Hex Ascii 码：</p>
+<pre><code>Hex: 3E D
+Bin: 0011 1110 1101
+Dec: 1005
+</code></pre>
+<p>将十六进制的 3ED Ascii 码转换为 十进制的数字，我们可以看到它正好是 <strong>1005</strong></p>
+<h4>Reference Station ID</h4>
+<pre><code>Hex: 7 D3
+Bin: 0111 1101 0011
+Dec: 2003
+</code></pre>
+<h4>Reserved for ITRF Realization Year</h4>
+<p>Hex：02 02
+Bin：<strong>0000 00</strong>1 00000 0010（取前 6 位 ，也就是 0000 00 = 0）</p>
+<h4>GPS Indicator</h4>
+<p>Hex: 02 02</p>
+<p>Bin：0000 00**1 **00000 0010 （取第 7 位 ，也就是 1）</p>
+<h4>GLONASS Indicator</h4>
+<p>Hex: 02 02</p>
+<p>Bin：0000 001<strong>0</strong> 0000 0010 （取第 8 位 ，也就是 0）</p>
+<h4>Reserved for Galileo Indicator</h4>
+<p>Hex: 02 02</p>
+<p>Bin：0000 0010 <strong>0</strong>000 0010 （取第 9 位 ，也就是 0）</p>
+<h4>Reference-Station Indicator</h4>
+<p>Hex: 02 02</p>
+<p>Bin：0000 0010 0<strong>0</strong>00 0010 （取第 10 位 ，也就是 0）</p>
+<h4>Antenna Reference Point ECEF-X</h4>
+<p>它的长度是 38 bits</p>
+<p>Hex： 02 98 0E DE EF</p>
+<p>Bin:  00<strong>00 0010 1001 1000 0000 1110 1101 1110 1110 1111</strong></p>
+<p>Dec: 11141045999</p>
+<h4>Single Receiver Oscillator Indicator</h4>
+<p>Hex: 34</p>
+<p>Bin: <strong>0</strong>011 0100 （取第 1 位， 也就是0）</p>
+<h4>Reserved</h4>
+<p>Hex: 34</p>
+<p>Bin:  0<strong>0</strong>11 0100 （取第 2 位， 也就是0）</p>
+<h4>Antenna Reference Point ECEF-Y</h4>
+<p>它的长度是 38 bits</p>
+<p>Hex: 34 B4 BD 62 AC</p>
+<p>Bin: 00<strong>11 0100 1011 0100 1011 1101 0110 0010 1010 1100</strong></p>
+<p>二进制最高位是 1 ，为负数，所以要取反再加1</p>
+<p>补码： 1<strong>0 1011 0100 1011 0100 0010 1001 1101 0101 0100</strong></p>
+<p>除去第一位的符号位，后面加粗的就是实际的数值</p>
+<p>Bin: 0 1011 0100 1011 0100 0010 1001 1101 0101 0100</p>
+<p>Hex: 4B 4B 42 9D 54</p>
+<p>Dec: 48507297108</p>
+<p>加上符号位就是 -48507297108</p>
+<h4>Quarter Cycle Indicator</h4>
+<p>Hex: 09</p>
+<p>Bin: <strong>00</strong> 00 1001（取前两位， 也就是 00）</p>
+<h4>Antenna Reference Point ECEF-Z</h4>
+<p>Hex : 09 41 98 6F 33</p>
+<p>Bin:  00<strong>00 1001 0100 0001 1001 1000 0110 1111 0011 0011</strong></p>
+<p>Dec： 39755214643</p>
+<hr />
+<p>到此为止，手动结算就已完成，若是关注 ECEF XYZ 的取值，则需要回看数据类型，它们的数据类型是 DF025、DF026、DF027</p>
+<p><img src="https://s2.loli.net/2024/08/05/QcpB6iJHEjxY8Ng.png" alt="image.png" /></p>
+<p>这张图详细地说明了 ECEF XYZ 的数据类型，数据范围，数据处理</p>
+<p>其中，它是 int38 的有符号38位整数，数据是 0.0001 m</p>
+<p>上面我们算得的数，都应做一个处理：</p>
+<p>ECEF-X ： 11141045999 * 0.0001 = 1114104.5999m</p>
+<p>ECEF-Y： 48507297108*0.0001= -4850729.7108m</p>
+<p>ECEF-Z：39755214643*0.0001 = 3975521.4643m</p>
+<p>（完）</p>
+</div>
+    </div>
+    <script src="https://giscus.app/client.js"
+        data-repo="fengyarnom/fengyarnom.github.io"
+        data-repo-id="R_kgDOJAggHw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJAggH84CXNA3"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+        </div>
+    </div>
+
+    
+</body>
+<footer>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+</footer> 
+</html>
