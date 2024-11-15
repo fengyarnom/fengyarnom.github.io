@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🐱</text></svg>">
+	<title>Yarnom&#x27;Blog</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });
+        });
+    </script>
+
+    <script async src="https://umami.yarnom.com/script.js" data-website-id="049fbfba-0566-421e-9137-533851ed8c60"></script>
+</head>
+<body>
+    <header>
+    <div class="nav_area">
+        <div class="logo">
+            <a href="/">Yarnom&#x27;Blog</a>
+            <div class="menu_mobile" onclick="toggleMenu()">
+                <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
+            </div>
+        </div>
+
+        <div class="nav_bar">
+            <ul>
+                
+                    <li><a href="&#x2F;archive">归档</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;tags">标签</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;categories">分类 </a></li>
+                
+                    <li><a href="&#x2F;link">友链</a></li>
+                
+                    <li><a href="&#x2F;about">关于</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.nav_bar');
+        menu.classList.toggle('show_nav_bar');
+    }
+</script>
+
+    
+    <div class="main_container">
+        <div class="main_content main_area">
+            
+    <h1>关于</h1>
+    <h3>关于我</h3>
+<ul>
+<li>爱猫，虽然从来没有养过(bushi)</li>
+<li>胶片摄影</li>
+<li>喜欢打羽毛球</li>
+<li>喜欢历史，严格来说比起计算机，我应该更喜欢历史专业。</li>
+</ul>
+<h3>联系我</h3>
+<p>如果您需要联系我，您可以发送邮件至 <code>admin@yarnom.com</code> ，我会很快给您回复。</p>
+<h3>关于这个网站</h3>
+<p>网站由<code>rustic-page</code>驱动，这是一个我自己写的静态博客生成器，它是一个很简单的工具，事实上，我曾经自己完成过很多个不太成熟的博客系统，从当初的 PHP 到 Flask, 学习了之后，便总是想着写一个博客系统来巩固一下自己的学习成果，但都是些半成品，没过多久便不再使用了。</p>
+<p>我开始意识到，我可能不是喜欢写博客，而是喜欢去折腾各种工具。</p>
+<p>再然后我接触到了 Hexo 这个静态博客生成器，逐渐才写出一些博文来，静态博客的好处是使我可以专注于内容创造的本身，同时它们也及其的稳定，所以在使用 Hexo 期间，我确确实实写了很多内容。</p>
+<p>再然后我又萌生了自己制作一个静态博客生成器的想法，两个月后这个想法最终实现，<code>rustic-page</code> 诞生，而这个博客也是由这个生成器所构造。</p>
+
+    <script src="https://giscus.app/client.js"
+        data-repo="fengyarnom/fengyarnom.github.io"
+        data-repo-id="R_kgDOJAggHw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJAggH84CXNA3"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+        </div>
+    </div>
+
+    
+</body>
+<footer>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+</footer> 
+</html>

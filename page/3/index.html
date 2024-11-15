@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🐱</text></svg>">
+	<title>Yarnom&#x27;Blog</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });
+        });
+    </script>
+
+    <script async src="https://umami.yarnom.com/script.js" data-website-id="049fbfba-0566-421e-9137-533851ed8c60"></script>
+</head>
+<body>
+    <header>
+    <div class="nav_area">
+        <div class="logo">
+            <a href="/">Yarnom&#x27;Blog</a>
+            <div class="menu_mobile" onclick="toggleMenu()">
+                <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
+            </div>
+        </div>
+
+        <div class="nav_bar">
+            <ul>
+                
+                    <li><a href="&#x2F;archive">归档</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;tags">标签</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;categories">分类 </a></li>
+                
+                    <li><a href="&#x2F;link">友链</a></li>
+                
+                    <li><a href="&#x2F;about">关于</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.nav_bar');
+        menu.classList.toggle('show_nav_bar');
+    }
+</script>
+
+    
+    <div class="main_container">
+        <div class="main_content main_area">
+            
+    
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;5&#x2F;20&#x2F;看完了 NeoVim 的 Tutor 文档.html">看完了 NeoVim 的 Tutor 文档</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-05-20 20:37:16</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/随笔">随笔</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>今天闲得没事干，于是想起了可以看看 NeoVim 提供的入门文档，是的，它是全英文的，但是里面的单词还是很简单的，颇为流畅地通读了一遍。之前只是知道一些零零散散的命令，如今感觉好多了，又学习到了很多新的知识。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/neovim">neovim</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;5&#x2F;9&#x2F;Extract tar.gz file to a directory and create the directory if not exist.html">Extract tar.gz file to a directory and create the directory if not exist</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-05-09 16:14:24</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/教程">教程</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>Description</h2>
+<p>I can run the following command to extract the tar.gz file to 'somedir' directory, But this command requires that the directory already exists.</p>
+<pre><code class="language-bash">tar -xvf somefile.tar.gz -C somedir
+</code></pre>
+<h2>Solution</h2>
+<p>Following command can extract the somefile.tar.gz file to a directory that does not exist.</p>
+<pre><code class="language-bash">tar -xf somefile.tar.gz --one-top-level=somedir
+</code></pre>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/extract">extract</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;5&#x2F;5&#x2F;dwm 和 st 的安装及补丁.html">dwm 和 st 的安装及补丁</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-05-05 15:59:30</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/教程">教程</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>前言</h2>
+<p>得益于近些日子在学校深入学习了很多关于 Linux 的知识，加之之前也多次重装过 Arch ，这些因素综合起来后，这一次的系统安装可以说颇为顺畅，之前因无法理解的地方而导致难以下手的操作，所赖知识见长，逐渐克服且熟练了起来。</p>
+<p>本次为了更加深入地去学习 Linux ，所以放弃了像 Gnome 这样简单易用的桌面环境, 而是使用像 DWM 这样更简单的窗口管理器，虽然是自找麻烦，但我也乐在其中，我会在本文中简略地记录下折腾的过程。</p>
+<h2>DWM 和 st 的安装</h2>
+<p>事实上安装 DWM 非常的简单，自需要从 suckless 官网下载源码文件即可。</p>
+<pre><code class="language-bash">
+$ git clone git://git.suckless.org/dwm
+$ cd dwm
+$ make
+# sudo make install
+
+</code></pre>
+<p>编译安装后，我这里是通过 xrog 的 <code>.xinitrc</code> 从 tty 终端使用 <code>startx</code> 命令启动的：</p>
+<pre><code class="language-bash">exec dwm
+</code></pre>
+<p>启动之后的第一眼就是简陋，目前还什么都干不了，因为我甚至还没安装终端，suckless 也提供了一个 xrog 下的终端实现，叫 <code>st</code> 。
+通过魔法键回到 tty （ps.当然也可以通过快捷键：<code>Alt</code>  <code>+</code> <code>Shift</code> <code>+</code> <code>Q</code> 退出 dwm )，通过 tty 的终端去下载 st 源码。</p>
+<p>同样也是通过源码安装：</p>
+<pre><code class="language-bash">$ git clone https://git.suckless.org/st
+$ cd st
+$ make
+# sudo make install
+</code></pre>
+<p>编译安装完后，在dwm便应该通过<code>Alt</code> <code>+</code> <code>Shift</code> <code>+</code> <code>Enter</code> 组合键启动 <code>st</code> 管终端。但是毫无疑问，也是十分简陋，甚至字体小到无法看清……</p>
+<p>不过问题不大，我学过 C ，源码文件是能看懂的，首先就是修改了字体大小，顺带一提我还通过 pacman 包管理下载了 [ttf-fira-code] 字体。</p>
+<p>首先来修改一下 dwm 的字体和其大小：</p>
+<pre><code class="language-c"># dwm &gt; config.h
+
+static const char *fonts[]          = { &quot;Fira Code:size=14&quot; };
+static const char dmenufont[]       = &quot;Fira Code:size=14&quot;;
+
+</code></pre>
+<p>保存后通过 <code>sudo make clean install</code> 命令安装即可</p>
+<p>接着修改 st 终端的字体和大小：</p>
+<pre><code class="language-c"># st &gt; config.h
+
+static char *font = &quot;Fira Code:style=Bold:pixelsize=23:antialias=true:autohint=true&quot;;
+</code></pre>
+<p>保存后通过 <code>sudo make clean install</code> 命令安装即可</p>
+<p>这样修改完后，便好看很多了。</p>
+<h2>安装 dmenu</h2>
+<p>这个就是 suckless 的程序托盘？
+总之，安装后，可以快速打开程序，也是蛮好的，这个就没有使用源码安装了，不过听说它也有很多好玩之处，之后再研究吧，总之 dmenu 通过包管理器安装：</p>
+<pre><code class="language-bash">$ sudo pacman -S dmenu
+</code></pre>
+<h2>给 dwm 打补丁</h2>
+<p>Dwm 目前其实足够我使用了， 这里就打一个透明补丁: 「 <a href="https://dwm.suckless.org/patches/alpha/dwm-alpha-20201019-61bb8b2.diff">alpha.diff</a>  」</p>
+<pre><code class="language-bash">$ wget https://dwm.suckless.org/patches/alpha/dwm-alpha-20201019-61bb8b2.diff
+$ patch p1 &lt; dwm-alpha-20201019-61bb8b2.diff
+
+</code></pre>
+<p>通过 <code>patch</code> 命令 把补丁打进去即可，之前我都没怎么用过这个 patch 命令，用多了其实也还好，出现错误了，手动去修改源文件即可。</p>
+<h2>给 st 打补丁</h2>
+<p>这里打了好几个补丁：</p>
+<ul>
+<li>「 <a href="https://st.suckless.org/patches/alpha/st-alpha-20220206-0.8.5.diff">st-alpha-20220206-0.8.5.diff</a>  」 这是改变st透明度的补丁。</li>
+<li>「 <a href="https://st.suckless.org/patches/scrollback/st-scrollback-20210507-4536f46.diff">st-scrollback-20210507-4536f46.diff</a> 」这是让 st 终端支持回滚（按键支持）</li>
+<li>「 <a href="https://st.suckless.org/patches/scrollback/st-scrollback-mouse-20220127-2c5edf2.diff">st-scrollback-mouse-20220127-2c5edf2.diff</a> 」这是回滚的鼠标滚轮支持(ps.需要先安装scrollback 补丁)</li>
+</ul>
+<p>也是一样地通过 <code>patch</code> 命令打进去，这里就不再赘述了。</p>
+<h2>安装 picom</h2>
+<p>这是一个合成管理器，可以给窗口管理器带来需要效果，比如透明、阴影，上面的透明补丁也需要它的安装才能真正起作用。</p>
+<pre><code class="language-bash">$ sudo pacman -S picom
+</code></pre>
+<p>安装完后，编辑 <code>~/.xinitrc</code> 文件,进程让它以 Daemon（后台） 的形式运行。</p>
+<pre><code class="language-bash">compton -b
+</code></pre>
+<p>（未完待续）</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/dwm">dwm</a></li>
+                    
+                    <li><a href="/archive/tags/st">st</a></li>
+                    
+                    <li><a href="/archive/tags/dmenu">dmenu</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;5&#x2F;3&#x2F;重新安装 Archlinux.html">重新安装 Archlinux</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-05-03 11:22:11</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/随笔">随笔</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>前言</h2>
+<p>最近系统频繁死机，通过初步判断，应该是图形界面的卡死，但不合理的是 —— 我无法通过魔法键退出到tty界面……</p>
+<p>我尝试了复现，但这似乎是没有规律的，我其实开始怀疑是我的SSD的问题了，但转头用了两天DWM，期间没有出现卡死现象，那问题很大可能就是图形界面卡死，Gnome和我目前的系统内核不匹配？</p>
+<p>总之，我决定对系统做一次全面的重置。</p>
+<p>这里放一个 Chrome 插件： <a href="/download/Ghelper-v2.8.2.crx">Ghelper</a></p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/archlinux">archlinux</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;4&#x2F;6&#x2F;[NFS] mount: Connection timed out.html">[NFS] mount: Connection timed out</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-04-06 20:09:29</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/ARM">ARM</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>问题描述</h2>
+<p>Linux 服务端和 Arm 开发板客户端进行 NFS 服务的连接。</p>
+<p>Linux 和 Arm 开发板之间能ping通，并且处于同一网端，且掩码、网口相同，但是在执行下面的程序时发生超时错误。</p>
+<p>在服务端的nfs配置完全正确的情况下，Arm开发板还是无法正确连接nfs服务器。</p>
+<pre><code class="language-bash">[root@FORLINX6410]# mount -t nfs -o nolock,hard 192.168.1.5:/home/yarnom/nfs /mnt
+mount: mounting 192.168.1.5:/home/yarnom/nfs on /mnt failed: Connection timed out
+
+</code></pre>
+<h2>解决</h2>
+<p>这个问题困扰了我两天终于在这个<a href="https://stackoverflow.com/questions/45938202/mount-nfs-connection-timed-out-on-ubuntu-14-04-1-lts">帖子</a>里找到了解决方案。</p>
+<blockquote>
+<p>Mount the NFS filesystem using the TCP protocol instead of the default UDP protocol. Many NFS servers only support UDP.</p>
+</blockquote>
+<p>这是在NFSv3中添加了对TCP协议的支持：</p>
+<p>总之，我尝试了下面的命令，使用了tcp协议：</p>
+<pre><code class="language-bash">$ mount -t nfs -o nolock,proto=tcp,port=2049 192.168.1.5:/home/yarnom/nfs /mnt
+</code></pre>
+<p>这个协议最终使我正确连接上了nfs服务器。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/NFS">NFS</a></li>
+                    
+                    <li><a href="/archive/tags/ARM">ARM</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;3&#x2F;31&#x2F;2023-03-31 英语翻译练习.html">2023-03-31 英语翻译练习</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-03-31 13:20:27</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/英语">英语</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>Studying for a graduate exam can be challenging, but with the right mindset and study strategies, it can be manageable. It's important to prioritize your time, focusing on your weak areas while also reviewing what you already know. Practice exams can be helpful in identifying areas for improvement and getting a sense of the exam format. Additionally, developing good study habits, such as taking breaks and getting enough sleep, can increase your overall productivity and retention of material. Remember to stay motivated and keep a positive attitude, as this will help you stay focused and achieve your goals.</p>
+<p>备考研究生考试可能是具有挑战性的，但是只要拥有正确的心态和学习策略，就可以应对。重要的是要优先考虑时间，专注于自己的薄弱领域，同时复习已经掌握的知识。模拟考试可以帮助您确定需要改进的方面，并了解考试的格式。此外，养成良好的学习习惯，如休息和充足的睡眠，可以提高您的总体生产力和记忆材料的能力。记住要保持动力和积极的态度，因为这将帮助您保持专注，实现自己的目标。</p>
+<p>prioritize - 优先考虑
+weak areas - 薄弱领域
+retention - 记忆
+productivity - 生产力/工作效率
+positive attitude - 积极态度</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/英语">英语</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;3&#x2F;28&#x2F;对未来的一些思考.html">对未来的一些思考</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-03-28 14:43:31</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/随笔">随笔</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><p>这段时间我在写积分题，写到后面的难题感觉特别的痛苦，我自然是不应该放弃的，我应该坚持下去。</p>
+<p>虽然如此劝慰自己，但在行动上还是逃避，退后。</p>
+<p>自闭。</p>
+<p>走了出来，为了什么？</p>
+<p>不去逃避就是最大的勇气。</p>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/思考">思考</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="articles">
+            <div class="post">
+                <div class="header_post">
+                    <div class="title_post"><a href="&#x2F;archive&#x2F;posts&#x2F;2023&#x2F;3&#x2F;26&#x2F;工程 [2023_3_25] 附录文件「二」 - Flask SQLAlchemy.html">工程 [2023_3_25] 附录文件「二」 - Flask SQLAlchemy</a></div>
+                    <div class="detail_post">
+                        <div class="date">发布时间：2023-03-26 16:19:51</div>
+                        <div class="categories">
+                            归档分类：
+                            <ul>
+                                
+                                <li><a href="/archive/categories/Proj_20230325">Proj_20230325</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content_post"><h2>前言</h2>
+<p>本文主要介绍 Flask SQLAlchemy 的具体使用。</p>
+<p>如需要了解 Flask 入门文档可跳转：</p>
+<ul>
+<li><a href="/2023/03/26/%E5%B7%A5%E7%A8%8B-2023-3-25-%E9%99%84%E5%BD%95%E6%96%87%E4%BB%B6%E3%80%8C%E4%B8%80%E3%80%8D-Flask-%E8%B5%B7%E6%AD%A5/"> 附录文件「一」 </a></li>
+<li><a href="https://flask.palletsprojects.com/en/2.2.x/quickstart/"> Flask官方文档 </a></li>
+<li><a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/"> Flask-Sqlalchemy 官方文档</a></li>
+</ul>
+<h2>Setup</h2>
+<h3>Install MySQL/MariaDB</h3>
+<h4>1. Installation</h4>
+<p>MariaDB is the default implementation of MySQL in Arch Linux, provided with the mariadb package.</p>
+<p><strong>Install mariadb</strong>, and run the following command <strong>before starting</strong> the <code>mariadb.service</code></p>
+<pre><code class="language-bash"># mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+</code></pre>
+<h4>2. Configuration</h4>
+<p>Once you have started the MariaDB server and added a root account, you may want to change the default configuration.</p>
+<p>To log in as root on the MariaDB server, use the following command:</p>
+<pre><code class="language-bash"># mariadb -u root -p
+</code></pre>
+<h5>2.1 Add user</h5>
+<p>Creating a new user takes two steps: <code>create the user</code>; <code>grant privileges</code>. In the below example, the user monty with some_pass as password is being created, then granted full permissions to the database mydb:</p>
+<pre><code class="language-bash"># mariadb -u root -p
+</code></pre>
+<pre><code class="language-mysql">MariaDB&gt; CREATE USER 'monty'@'localhost' IDENTIFIED BY 'some_pass';
+MariaDB&gt; GRANT ALL PRIVILEGES ON mydb.* TO 'monty'@'localhost';
+MariaDB&gt; quit
+</code></pre>
+<h3>安装 PyMySQL 和 Flask-SQLAlchemy</h3>
+<p>使用python 提供 <code>pip</code> 包管理器安装 <code>pymysql</code> 和 <code>Flask-SQLAlchemy</code></p>
+<pre><code class="language-bash">$ pip install PyMySQL
+$ pip install flask-sqlalchemy
+</code></pre>
+<h4>Connection URI Format</h4>
+<p>For a complete list of connection URIs head over to the SQLAlchemy documentation under (Supported Databases). This here shows some common connection strings.</p>
+<p>SQLAlchemy indicates the source of an Engine as a URI combined with optional keyword arguments to specify options for the Engine. The form of the URI is:</p>
+<pre><code class="language-python">dialect+driver://username:password@host:port/database
+</code></pre>
+<p>MySQL:</p>
+<pre><code class="language-python">mysql://scott:tiger@localhost/mydatabase
+</code></pre>
+<h3>Configuration Keys</h3>
+<p><strong>SQLALCHEMY_DATABASE_URI</strong></p>
+<p>The database URI that should be used for the connection. Examples:</p>
+<ul>
+<li>sqlite:////tmp/test.db</li>
+<li>mysql://username:password@server/db</li>
+</ul>
+<h3>创建数据库</h3>
+<p>安装完上边的套件后，就可以正式创建Mysql数据库了。</p>
+<h4>使用root用户创建数据库</h4>
+<pre><code class="language-bash">sudo mariadb -u root -p
+</code></pre>
+<p>进入mariadb后，使用如下命令创建数据库：</p>
+<pre><code class="language-sql">MariaDB [(none)]&gt; create database proj_20230325;
+Query OK, 1 row affected (0.000 sec)
+</code></pre>
+<h4>给予权限</h4>
+<p>之后给予用户 Yarnom 该数据库的所有权限：</p>
+<pre><code class="language-sql">MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON proj_20230325.* TO 'yarnom'@'localhost';
+Query OK, 0 rows affected (0.009 sec)
+</code></pre>
+<h3>安装 FLask-Migrate</h3>
+<pre><code class="language-bash">$ pip install Flask-Migrate
+</code></pre>
+<h4>配置</h4>
+<pre><code class="language-python">from flask_migrate import Migrate
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = &quot;mysql+pymysql://yarnom:root@localhost:3306/proj_20230325&quot;
+db = SQLAlchemy(app)
+Migrate(app,db)
+</code></pre>
+<h4>初始化</h4>
+<pre><code class="language-bash">$ flask db init
+</code></pre>
+<h3>Flask 使用Mysql数据库</h3>
+<p>创建出相应的模板：</p>
+<pre><code class="language-python">class Student(db.Model):
+    id = db.Column('id', db.String(100),primary_key=True)
+    name = db.Column('name',db.String(100))
+    def __init__(self, id, name):
+        self.id =id
+        self.name = name
+</code></pre>
+<p>使用如下命令更新数据库</p>
+<pre><code class="language-bash">$ flask db migrate -m &quot;說明文字&quot;
+$ flask db upgrade
+</code></pre>
+<h3>Flask-Sqlalchemy 使用</h3>
+<blockquote>
+<p>以下内容转载自<a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/">flask-sqlalchemy 官方文档</a></p>
+</blockquote>
+<h4>Flask 添加数据</h4>
+<pre><code class="language-python">me = User('admin', 'admin@example.com')
+db.session.add(me)
+db.session.commit()
+</code></pre>
+<h4>Flask 查询数据</h4>
+<p>So how do we get data back out of our database? For this purpose Flask-SQLAlchemy provides a query attribute on your Model class. When you access it you will get back a new query object over all records. You can then use methods like filter() to filter the records before you fire the select with all() or first(). If you want to go by primary key you can also use get().</p>
+<p>The following queries assume following entries in the database:
+|id|username|email|
+|---|---|---|
+|1|admin|admin@example.com|
+|2|peter|peter@example.org|
+|3|guest|guest@example.com|</p>
+<p>Retrieve a user by username:</p>
+<pre><code class="language-bash">&gt;&gt;&gt; peter = User.query.filter_by(username='peter').first()
+&gt;&gt;&gt; peter.id
+2
+&gt;&gt;&gt; peter.email
+u'peter@example.org'
+</code></pre>
+<p>Same as above but for a non existing username gives None:</p>
+<pre><code class="language-bash">&gt;&gt;&gt; missing = User.query.filter_by(username='missing').first()
+&gt;&gt;&gt; missing is None
+True
+</code></pre>
+<p>Selecting a bunch of users by a more complex expression:</p>
+<pre><code class="language-bash">&gt;&gt;&gt; User.query.filter(User.email.endswith('@example.com')).all()
+[&lt;User u'admin'&gt;, &lt;User u'guest'&gt;]
+</code></pre>
+<p>Ordering users by something:</p>
+<pre><code class="language-bash">&gt;&gt;&gt; User.query.order_by(User.username).all()
+[&lt;User u'admin'&gt;, &lt;User u'guest'&gt;, &lt;User u'peter'&gt;]
+</code></pre>
+<p>Limiting users:</p>
+<pre><code class="language-bash">&gt;&gt;&gt; User.query.limit(1).all()
+[&lt;User u'admin'&gt;]
+</code></pre>
+<p>Getting user by primary key:</p>
+<pre><code class="language-bash">&gt;&gt;&gt; User.query.get(1)
+&lt;User u'admin'&gt;
+</code></pre>
+</div>
+                <div class="tags_post">
+                    
+                    <li><a href="/archive/tags/开发记录">开发记录</a></li>
+                    
+                    <li><a href="/archive/tags/Flask">Flask</a></li>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="paginator">
+    
+        <a href="&#x2F;page&#x2F;2" class="extend prev">上一页</a>
+    
+        <a href="" class="page_number current">3</a>
+    
+        <a href="&#x2F;page&#x2F;4" class="extend next">下一页</a>
+    
+
+</div>
+
+        </div>
+    </div>
+
+    
+</body>
+<footer>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+</footer> 
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🐱</text></svg>">
+	<title>地理坐标转换 2024-06-29</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });
+        });
+    </script>
+
+    <script async src="https://umami.yarnom.com/script.js" data-website-id="049fbfba-0566-421e-9137-533851ed8c60"></script>
+</head>
+<body>
+    <header>
+    <div class="nav_area">
+        <div class="logo">
+            <a href="/">Yarnom&#x27;Blog</a>
+            <div class="menu_mobile" onclick="toggleMenu()">
+                <span class="menu_icon">&#9776;</span> <!-- Unicode hamburger icon -->
+            </div>
+        </div>
+
+        <div class="nav_bar">
+            <ul>
+                
+                    <li><a href="&#x2F;archive">归档</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;tags">标签</a></li>
+                
+                    <li><a href="&#x2F;archive&#x2F;categories">分类 </a></li>
+                
+                    <li><a href="&#x2F;link">友链</a></li>
+                
+                    <li><a href="&#x2F;about">关于</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.nav_bar');
+        menu.classList.toggle('show_nav_bar');
+    }
+</script>
+
+    
+    <div class="main_container">
+        <div class="main_content main_area">
+            
+
+<div class="post_area">
+    <div class="post">
+        <div class="header_post">
+            <div class="title_post"><a href="">地理坐标转换</a></div>
+            <div class="detail_post">
+                <div class="date">发布时间：2024-06-29</div>
+                <div class="categories">
+                    归档分类：
+                    <ul>
+                        
+                        <li><a href="/archive/categories/地理">地理</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="tags">
+                    标签：
+                    <ul>
+                        
+                        <li><a href="/archive/tags/地理">地理</a></li>
+                        
+                        <li><a href="/archive/tags/Geo">Geo</a></li>
+                        
+                        <li><a href="/archive/tags/LLA">LLA</a></li>
+                        
+                        <li><a href="/archive/tags/ECEF">ECEF</a></li>
+                        
+                        <li><a href="/archive/tags/ENU">ENU</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content_post"><p>近些日子的工作频繁接触到了大地测量中的各种知识，在编写程序的时候更是涉及各种地理坐标的转换，虽然没有深入去学习其核心的变化原理，但是简单地使用现存的公式配合程序进行计算还是可以做到的，以下是有关知识的记录。</p>
+<h3>1.名词解释</h3>
+<h4>1.1 LLA 坐标系</h4>
+<p>LLA 坐标是地理坐标系中的一种表示方法，LLA 代表经纬度和高度（Latitude, Longitude, and Altitude），它通常用于描述地球表面上的位置。</p>
+<ul>
+<li><strong>Latitude (纬度)</strong>：表示从地球赤道向北或向南的角度，范围是 -90° 到 +90°。正值表示北纬，负值表示南纬。</li>
+<li><strong>Longitude (经度)</strong>：表示从本初子午线（通常是通过格林尼治的子午线）向东或向西的角度，范围是 -180° 到 +180°。正值表示东经，负值表示西经。</li>
+<li><strong>Altitude (高度)</strong>：表示相对于平均海平面的高度，可以是正值（高于海平面）或负值（低于海平面）。</li>
+</ul>
+<p>LLA 坐标系也叫全球地理坐标系、大地坐标系、WGS-84坐标系。纬度和经度的数值可以以多种不同的单位或格式出现：</p>
+<ul>
+<li>六十进制度：度、分、秒：40° 26′ 46“ N 79° 58′ 56” W</li>
+<li>度和十进制分：40° 26.767′ N 79° 58.933′ W</li>
+<li>十进制度： +40.446 -79.982</li>
+</ul>
+<p>横纬竖经，在计算的过程中，主要也是将之转换为十进制来计算的，以下是计算公式：
+$$
+decimal = degress + \frac{minutes}{60} + \frac{seconds}{3600}
+$$</p>
+<p>关于 <strong>WGS-84</strong> （ World Geodetic System 1984，1984年世界大地测量系统），它是目前全球范围内使用最广泛的地理坐标系统和地球模型，由美国国防部制定和维护，主要用于全球定位系统（GPS）和各种地理信息系统（GIS）。</p>
+<p>WGS-84 有几个关键常量用于定义参考椭球体的形状和尺寸，这些常量包括半长轴、半短轴、扁率和离心率等：</p>
+<ul>
+<li><strong>半长轴 (A)</strong>：椭球体的赤道半径
+<ul>
+<li>其值为 $ 6378137.0 $ 米。</li>
+</ul>
+</li>
+<li><strong>半短轴 (B)</strong>：椭球体的极半径
+<ul>
+<li>其计算公式为： $ B =  A*(1-F)  $</li>
+<li>其值为 $ 6356752.3142 $ 米</li>
+</ul>
+</li>
+<li><strong>扁率 (F)</strong>：描述椭球体扁平程度的参数
+<ul>
+<li>其计算公式为：$ F = \frac{A-B}{A}$</li>
+<li>其值为：1/298.257223563</li>
+</ul>
+</li>
+<li><strong>第一离心率 (E)</strong>：描述椭球体形状的一种参数，反映了椭球体的偏离程度
+<ul>
+<li>其计算公式：$ E = \sqrt{1 - (\frac{B}{A}) ^2} $</li>
+<li>其值约为： 0.0818191908426</li>
+</ul>
+</li>
+<li><strong>第一离心率的平方 (E²)</strong>：减少计算所用
+<ul>
+<li>其中值约为： 0.00669437999014</li>
+</ul>
+</li>
+</ul>
+<h4>1.2 ECEF坐标系</h4>
+<p>ECEF（Earth-Centered, Earth-Fixed）坐标系是一种三维笛卡尔坐标系，用于表示地球上的位置。ECEF 坐标系也称为地心地固坐标系，它的原点位于地球质心，并且随着地球的自转而旋转。</p>
+<ul>
+<li><strong>X 轴</strong>：指向穿过地球赤道与本初子午线（通过格林尼治的子午线）交点的方向。</li>
+<li><strong>Y 轴</strong>：指向穿过地球赤道与东经90度子午线交点的方向。</li>
+<li><strong>Z 轴</strong>：指向北极方向，与地球自转轴一致。</li>
+</ul>
+<p>ECEF 坐标系提供了一个统一的三维坐标框架，可以精确地表示地球表面和近地空间的任何位置。</p>
+<h4>1.3 ENU坐标系</h4>
+<p>ENU（East-North-Up）坐标系是一种局部笛卡尔坐标系，用于表示相对于某个参考点的三维位置。</p>
+<ul>
+<li>ENU 坐标系的原点通常位于地球表面的某个参考点，该点的地理坐标为 (Latitude, Longitude, Altitude)。</li>
+<li><strong>E 轴（东向轴）</strong>：指向地平线的东方。</li>
+<li><strong>N 轴（北向轴）</strong>：指向地平线的北方。</li>
+<li><strong>U 轴（上向轴）</strong>：垂直向上，指向天空。</li>
+</ul>
+<h3>2. 坐标系转换</h3>
+<h4>2.1 从 LLA 坐标到 ECEF 坐标</h4>
+<p>这里约定LLA的经度为 $\phi$，纬度为 $\lambda $，海拔为 $ h $,  选取 WGS-84 坐标系参数，$a$和$b$分别是是赤道半径（半长轴）和极半径（半短轴），$e^2 = 1 - \frac{b^2}{a^2}$是偏心率的平方, $f=1-\frac{b}{a} $ 是基准椭球体的极扁率。
+$$
+\begin{align}
+X&amp; = (N(\phi) + h) cos \phi cos\lambda \\
+Y&amp; = (N(\phi) + h) cos \phi sin\lambda \\
+Z&amp; = (\frac{b^2}{a^2}N(\phi) + h)sin\phi \\
+&amp;=((1-e^2)N(\phi) +h)sin\phi \\
+&amp;=((1-f)^2N(\phi)+h)sin\phi
+\end{align}
+$$
+其中
+$$
+\begin{align}
+N(\phi) = \frac{a^2}{\sqrt{a^2cos^2\phi + b^2sin^2\phi}} = \frac{a}{\sqrt{1-e^2sin^2\phi}}
+\end{align}
+$$</p>
+<h4>2.2 从 ECEF 到 LLA坐标</h4>
+<p>将 ECEF 坐标 (X, Y, Z) 转换为经纬度和高度 (Latitude, Longitude, Altitude) 需要迭代计算。
+$$
+\begin{align}
+\lambda = atan2(Y,X)
+\end{align}
+$$</p>
+<p>其中，atan2 是反正切函数</p>
+<p>$\lambda$ 是唯一能直接算出的，其余的纬度和高度的转换所要涉及 N 的循环关系
+$$
+\begin{align}
+\frac{Z}{p}cot\phi = 1 - \frac{e^2N}{N+h} \\
+h = \frac{p}{cos\phi} -N
+\end{align}
+$$
+其中，如公式$(6)$所示，N 的变化取决于 $\phi$  的值</p>
+<p>纬度和高度需要迭代求解， 例如，从第一个猜测 h≈0 开始，然后更新 N。</p>
+<p>其流程是这样的：</p>
+<ol>
+<li>猜测 h = 0，通过公式$(8) $ 可以推算 $cot\phi = \frac{(1-e^2)p}{Z} $ 求解出一个$\phi_1$</li>
+<li>将 $\phi_1$ 带入公式 $(6)$，求解出 $N$</li>
+<li>将 $N$ 带入公式$(9)$ 求解出 $h$</li>
+<li>将 $h$ 带入公式$(8)$ 求解出一个新的 $\phi_2$</li>
+<li>如果 $\phi_1$和$\phi_2$足够接近，则说明迭代出了一个正确的值，如果不是，则需要回到第2步继续迭代。</li>
+</ol>
+<h4>2.3 从 ECEF 到 ENU 坐标</h4>
+<p>ENU 坐标又称为站心坐标，6也就是局部坐标，这个坐标需要一个局部参考点。在实际例子中，这个参考点通常是雷达、基站这些地方。</p>
+<p>如果基站位于 ${X_0,Y_0,Z_0}$，测站位于 ${X_1,Y_1,Z_1}$</p>
+<p>$$
+\begin{bmatrix}
+e\\
+n\\
+u
+\end{bmatrix}=
+\begin{bmatrix}
+-sin\lambda_0&amp; cos\lambda_0 &amp; 0\\
+-sin\phi_0cos\lambda_0&amp; -sin\phi_0sin\lambda_0 &amp;cos\phi_0 \\
+cos\phi_0cos\lambda_0&amp; cos\phi_0sin\lambda_0 &amp; sin\phi_0
+\end{bmatrix}
+\begin{bmatrix}
+X_1 -X_0\\
+Y_1-Y_0\\
+Z_1-Z_0
+\end{bmatrix}
+$$</p>
+<p>(完)</p>
+</div>
+    </div>
+    <script src="https://giscus.app/client.js"
+        data-repo="fengyarnom/fengyarnom.github.io"
+        data-repo-id="R_kgDOJAggHw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJAggH84CXNA3"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+        </div>
+    </div>
+
+    
+</body>
+<footer>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+</footer> 
+</html>
